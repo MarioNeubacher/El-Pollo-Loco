@@ -6,14 +6,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>El Pollo Loco</title>
 
+    <!-- ICON TO BROWSER TAB -->
+    <link rel="shortcut icon" href="img/2.Secuencias_Personaje-Pepe-corrección/3.Secuencia_salto/J-36.png">
+    <!-- CSS -->
     <link rel="stylesheet" href="style.css">
-    <script src="js/game.js"></script>
+    <!-- JS -->
+    <script src="models/drawable-object.class.js"></script> <!-- subclasses underneath -->
+    <script src="models/movable-object.class.js"></script>
+    <script src="models/character.class.js"></script>
+    <script src="models/chicken.class.js"></script>
+    <script src="models/status-bar.class.js"></script> 
+    <script src="models/cloud.class.js"></script> 
+    <script src="models/background-object.class.js"></script> 
+    <script src="models/keyboard.class.js"></script> 
+    <script src="models/world.class.js"></script> 
+    <script src="models/level.class.js"></script> 
+    <script src="models/throwable-object.class.js"></script>
+    <script src="models/endboss.class.js"></script> 
+    <script src="levels/level1.js"></script> 
+    <script src="js/game.js"></script> <!-- has to be the last js doc -->
 </head>
-<body>
-    <h1>El Pollo Loco</h1>
-
-    <canvas width="720" height="480">
-
-    </canvas>
+<body class="background stop-scrolling">
+    <div id="id-startScreen">
+        <button onclick="init()" class="btn-startGame">Start game!</button>
+        <img style="height: 100vh; width: 100vw; object-fit: cover;" src="img/9.Intro _ Outro Image/Start Screen/Opción 1.png">    
+    </div>
+   
+    <div id="id-game" class="div-description d-none">
+        <canvas class="div-canvas" id="canvas" width="720" height="480"></canvas>
+        <img onclick="setSound()" id="id-audioImg" class="img-audio" src="img/sound.png">
+        <img onclick="setMusic()" id="id-musicImg" class="img-music" src="img/music.png">
+        <div style="display:flex; justify-content: space-between; align-items: center;">
+            <div style="display:flex;justify-content: space-around; align-items:center; width: 500px">
+                <p>LEFT:</p> <button class="div-key">◄</button>
+                <p>RIGHT:</p> <button class="div-key">►</button>
+                <p>JUMP:</p> <button class="div-key div-keySpace"></button>
+                <p>BOTTLE:</p> <button class="div-key">D</button>
+                <a style="color:white; padding-left: 15px; width: 120px" href="imagesOrigin.html">Images origin</a>
+            </div>
+            <img onclick="fullscreen()" class="img-fullscreen" src="img/fullscreen.png"> 
+        </div>
+    </div>
 </body>
 </html>
