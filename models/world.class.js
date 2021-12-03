@@ -6,6 +6,8 @@ class World {
     keyboard; //game.js
     camera_x = 0;
     statusBar = new StatusBar();
+    coinBar = new CoinBar();
+    bottleBar = new BottleBar();
     throwableObjects = [];
     gameMusic = new Audio('audio/gameMusic.mp3');
 
@@ -62,6 +64,8 @@ class World {
         this.ctx.translate(-this.camera_x, 0);
 
         this.addToMap(this.statusBar);
+        this.addToMap(this.coinBar);
+        this.addToMap(this.bottleBar);
 
         /* draw() fires as often as graphic card is able to = FPS */
         let self = this;

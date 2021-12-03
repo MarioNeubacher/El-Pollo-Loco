@@ -1,19 +1,19 @@
 class StatusBar extends DrawableObject {
     IMAGES = [
-        'img/7.Marcadores/Barra/Marcador vida/azul/0_.png',
-        'img/7.Marcadores/Barra/Marcador vida/azul/20_.png',
+        'img/7.Marcadores/Barra/Marcador vida/Naranja/0_ .png',
+        'img/7.Marcadores/Barra/Marcador vida/Naranja/20__1.png',
         'img/7.Marcadores/Barra/Marcador vida/azul/40_.png',
-        'img/7.Marcadores/Barra/Marcador vida/naranja/60_.png',
+        'img/7.Marcadores/Barra/Marcador vida/azul/60_.png',
         'img/7.Marcadores/Barra/Marcador vida/verde/80_.png',
         'img/7.Marcadores/Barra/Marcador vida/verde/100_.png'
     ];
     percentage = 100;
 
     constructor() {
-        super(); //necessary to have access to parent functions
+        super(); //necessary access the parent functions
         this.loadImages(this.IMAGES);
-        this.x = 40;
-        this.y = 0;
+        this.x = 10;
+        this.y = 5;
         this.width = 200;
         this.height = 60;
         this.setPercentage(100); // set the first image of 100%
@@ -21,9 +21,9 @@ class StatusBar extends DrawableObject {
 
     //setPercentage(50);
     setPercentage(percentage) {
-        this.percentage = percentage; // => 0 ... 5
+        this.percentage = percentage; // => 0-5 to get the right image 
         let path = this.IMAGES[this.resolveImagesIndex()];
-        this.img = this.imageCache[path];
+        this.img = this.imageCache[path]; //change image
     }
 
     resolveImagesIndex() {
