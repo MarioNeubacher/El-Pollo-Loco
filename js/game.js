@@ -18,10 +18,18 @@ function setSound() {
         soundMuted = false;
         element.src = "img/sound.png";
         world.character.walking_sound.volume=1;
+        world.character.dead_sound.volume=1;
+        world.character.hurt_sound.volume=1;
+        world.character.jump_sound.volume=1;
+        world.character.throw_sound.volume=1;
     } else {
         soundMuted = true;
         element.src = "img/nosound.png"
         world.character.walking_sound.volume=0;
+        world.character.dead_sound.volume=0;
+        world.character.hurt_sound.volume=0;
+        world.character.jump_sound.volume=0;
+        world.character.throw_sound.volume=0;
     }
 }
 

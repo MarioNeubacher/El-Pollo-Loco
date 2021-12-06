@@ -5,12 +5,13 @@ class MovableObject extends DrawableObject { //subclass
     acceleration = 2.5;
     energy = 100;
     lastHit = 0;
+    groundPos = 130;
 
     applyGravity() {
         setInterval(() => {
             if (this.isAboveGround() || this.speedY > 0) {
                 this.y -= this.speedY;
-                this.speedY -= this.acceleration;
+                this.speedY -= this.acceleration; //- to fall down
             }
         }, 1000 / 25);
     }
@@ -19,7 +20,7 @@ class MovableObject extends DrawableObject { //subclass
         if (this instanceof ThrowableObject) { //Throw object should always fall
             return true;
         } else {
-            return this.y < 130;
+            return this.y < this.groundPos;
         }
     }
 

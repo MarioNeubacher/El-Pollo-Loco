@@ -4,12 +4,12 @@ class Character extends MovableObject {
     y = 80;
     speed = 10;
     IMAGES_WALKING = [
-            'img/2.Secuencias_Personaje-Pepe-corrección/2.Secuencia_caminata/W-21.png',
-            'img/2.Secuencias_Personaje-Pepe-corrección/2.Secuencia_caminata/W-22.png',
-            'img/2.Secuencias_Personaje-Pepe-corrección/2.Secuencia_caminata/W-23.png',
-            'img/2.Secuencias_Personaje-Pepe-corrección/2.Secuencia_caminata/W-24.png',
-            'img/2.Secuencias_Personaje-Pepe-corrección/2.Secuencia_caminata/W-25.png',
-            'img/2.Secuencias_Personaje-Pepe-corrección/2.Secuencia_caminata/W-26.png'
+        'img/2.Secuencias_Personaje-Pepe-corrección/2.Secuencia_caminata/W-21.png',
+        'img/2.Secuencias_Personaje-Pepe-corrección/2.Secuencia_caminata/W-22.png',
+        'img/2.Secuencias_Personaje-Pepe-corrección/2.Secuencia_caminata/W-23.png',
+        'img/2.Secuencias_Personaje-Pepe-corrección/2.Secuencia_caminata/W-24.png',
+        'img/2.Secuencias_Personaje-Pepe-corrección/2.Secuencia_caminata/W-25.png',
+        'img/2.Secuencias_Personaje-Pepe-corrección/2.Secuencia_caminata/W-26.png'
     ];
     IMAGES_JUMPING = [
         'img/2.Secuencias_Personaje-Pepe-corrección/3.Secuencia_salto/J-31.png',
@@ -52,6 +52,10 @@ class Character extends MovableObject {
     world; //world.class.js
     walking_sound = new Audio('audio/running.mp3');
     jump_sound = new Audio('audio/jump.mp3');
+    hurt_sound = new Audio('audio/hurt.mp3');
+    dead_sound = new Audio('audio/dead.mp3');
+    throw_sound = new Audio('audio/throw.mp3');
+    hasPlayed = false;
 
     constructor() {
         super().loadImage('img/2.Secuencias_Personaje-Pepe-corrección/2.Secuencia_caminata/W-21.png'); //super() only once, after that use this
@@ -64,7 +68,7 @@ class Character extends MovableObject {
         this.animate();
     }
 
-    animate(){
+    animate() {
         setInterval(() => {
             this.walking_sound.pause();
             if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
@@ -85,25 +89,32 @@ class Character extends MovableObject {
             }
 
             this.world.camera_x = -this.x + 100; //camera gets linked to character
-        }, 1000/60);
+        }, 1000 / 60);
 
-        setInterval( () => {
-
+        setInterval(() => {
             if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD);
-            } else if(this.isHurt()) {
+                if (!this.isAboveGround()) {
+                    this.jump();
+                    this.groundPos = 1000;
+                    
+                }
+                if (!this.hasPlayed) {
+                    this.dead_sound.play();
+                    this.hasPlayed = true;
+                } 
+            } else if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT);
-            } else if(this.isAboveGround()){
+                this.hurt_sound.play();
+            } else if (this.isAboveGround()) {
                 this.playAnimation(this.IMAGES_JUMPING);
             } else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
                 this.playAnimation(this.IMAGES_WALKING);
+            } else if (this.world.keyboard.D ) {
+                this.throw_sound.play();
             } else {
                 this.playAnimation(this.IMAGES_SLEEPING);
             }
         }, 100);
-    }
-
-    jump(){
-        this.speedY = 30;
     }
 }
