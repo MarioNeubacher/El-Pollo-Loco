@@ -7,7 +7,9 @@ class World {
     camera_x = 0;
     statusBar = new StatusBar();
     coinBar = new CoinBar();
+    coins = [new Coin()];
     bottleBar = new BottleBar();
+    bottles = [new Bottle()];
     throwableObjects = [];
     gameMusic = new Audio('audio/gameMusic.mp3');
 
@@ -61,6 +63,8 @@ class World {
         this.addToMap(this.character);
         this.addObjectsToMap(this.level.enemies);
         this.addObjectsToMap(this.throwableObjects);
+        this.addObjectsToMap(this.coins);
+        this.addObjectsToMap(this.bottles);
         this.ctx.translate(-this.camera_x, 0);
 
         this.addToMap(this.statusBar);
