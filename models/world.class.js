@@ -10,6 +10,7 @@ class World {
     coins = [new Coin()];
     bottleBar = new BottleBar();
     bottles = [new Bottle()];
+    collectableObjects = new CollectableObject();
     throwableObjects = [];
     gameMusic = new Audio('audio/gameMusic.mp3');
 
@@ -46,6 +47,9 @@ class World {
             if (this.character.isColliding(enemy)) {
                 this.character.hit();
                 this.statusBar.setPercentage(this.character.energy);
+            }
+            if (this.bottle.isColliding(bottle)) {
+                this.collectableObjects.collectObject();
             }
         });
     }

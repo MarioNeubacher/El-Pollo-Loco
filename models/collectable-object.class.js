@@ -19,7 +19,7 @@ class CollectableObject extends DrawableObject {
      */
      collectCoin() {
         this.playAudio(this.coin_sound);
-        world.coinsCollected.push(this);
+        world.coinBar.push(this);
         this.removeObjectFromMap(world.coins);
     }
 
@@ -28,7 +28,7 @@ class CollectableObject extends DrawableObject {
      */
     collectBottle() {
         this.playAudio(this.bottle_sound);
-        world.bottlesCollected.push(this);
+        world.bottleBar.push(this);
         this.removeObjectFromMap(world.bottles);
     }
 
