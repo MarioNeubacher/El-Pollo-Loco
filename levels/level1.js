@@ -24,9 +24,7 @@ const level1 = new Level(
         new Bottle(),
         new Bottle()
     ],
-    [
-        createClouds(100)
-    ],
+    createClouds(100), //"," necessary otherwise console doesnt allow
     [
         new BackgroundObject('img/5.Fondo/Capas/5.cielo_1920-1080px.png', -719),
         new BackgroundObject('img/5.Fondo/Capas/3.Fondo3/2.png', -719),

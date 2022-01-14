@@ -1,9 +1,9 @@
-class MovableObject extends DrawableObject { //subclass
+class MovableObject extends DrawableObject { 
     speed = 0.15;
     otherDirection = false;
     speedY = 0;
     acceleration = 2.5;
-    energy = 100;
+    
     lastHit = 0;
     groundPos = 130;
 
@@ -24,7 +24,12 @@ class MovableObject extends DrawableObject { //subclass
         }
     }
 
-    isColliding(mo) {
+    /**
+     * 
+     * @param {string} mo - world.js collide...()
+     * @returns 
+     */
+    isColliding(mo) { 
         return this.x + this.width > mo.x &&
             this.y + this.height > mo.y &&
             this.x < mo.x &&
@@ -32,9 +37,9 @@ class MovableObject extends DrawableObject { //subclass
     }
 
     hit() {
-        this.energy -= 5;
-        if (this.energy < 0) {
-            this.energy = 0;
+        this.energyAmount -= 5;
+        if (this.energyAmount < 0) {
+            this.energyAmount = 0;
         } else {
             this.lastHit = new Date().getTime(); //ms from 1970
         }
@@ -47,7 +52,7 @@ class MovableObject extends DrawableObject { //subclass
     }
 
     isDead() {
-        return this.energy == 0;
+        return this.energyAmount == 0;
     }
 
     playAnimation(images) {

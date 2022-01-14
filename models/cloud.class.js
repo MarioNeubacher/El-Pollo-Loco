@@ -8,7 +8,8 @@ class Cloud extends MovableObject {
     world;
 
     constructor(x) {
-        super().loadImage('img/5.Fondo/Capas/4.nubes/Completo.png');
+        super(); //enables access to extended class
+        this.loadImage('img/5.Fondo/Capas/4.nubes/Completo.png');
         this.xInit = x;
         this.x = x;
         this.animate();

@@ -5,4 +5,7 @@ class Keyboard {
     DOWN = false;
     SPACE = false;
     D = false;
+
+    THROW_START = 0;
+    THROW_END = new Date().getTime();
 }

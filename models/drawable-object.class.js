@@ -1,36 +1,43 @@
 class DrawableObject {
     img;
-    imageCache = {};
+    imageCache = {}; //has to be an object not an array
     currentImage = 0;
     x = 120;
     y = 280;
     height = 150;
     width = 100;
 
-     // loadImage('img/test.png');
-     loadImage(path) {
-        this.img = new Image(); // this.img = document.getElementById('image') <img src="" id="image">
-        this.img.src = path;
+    /**
+     * First image unchangeable
+     * @param {} path - images origin
+     */ 
+    loadImage(path) {
+        this.img = new Image(); //"new Image()" is same as 'document.getElementById('image').innerHTML = <img src="">'
+        this.img.src = path; //updates img variable
     }
 
      /**
-     * 
-     * @param {Array} arr - ['img/image1.png', 'img/image2.png', ...]
+     * Enables to change images 
+     * @param {Array} arr - images origin 
      */
-    loadImages(arr) {
+    loadImages(arr) { 
         arr.forEach((path) => {
-            let img = new Image();
-            img.src = path;
-            this.imageCache[path] = img;
+            let img = new Image(); 
+            img.src = path; 
+            this.imageCache[path] = img; //updates img variable
         });
     }
 
     draw(ctx) {
-        ctx.drawImage(this.img, this.x, this.y, this.width, this.height); 
+        try {
+            ctx.drawImage(this.img, this.x, this.y, this.width, this.height); 
+        } catch(e) {
+            console.error('Error, Image not found', this.img); 
+        }
     }
 
     drawFrame(ctx) {
-        if (this instanceof Character || this instanceof Chicken || this instanceof Bottle || this instanceof Coin) {
+        if (this instanceof Character || this instanceof Chicken || this instanceof Bottle || this instanceof Coin || this instanceof ThrowableObject) {
             ctx.beginPath();
             ctx.lineWidth = '5';
             ctx.strokeStyle = 'red';

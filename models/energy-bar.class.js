@@ -1,4 +1,7 @@
-class StatusBar extends DrawableObject {
+class EnergyBar extends DrawableObject {
+
+   
+
     IMAGES = [
         'img/7.Marcadores/Barra/Marcador vida/Naranja/0_ .png',
         'img/7.Marcadores/Barra/Marcador vida/Naranja/20__1.png',
@@ -7,23 +10,25 @@ class StatusBar extends DrawableObject {
         'img/7.Marcadores/Barra/Marcador vida/verde/80_.png',
         'img/7.Marcadores/Barra/Marcador vida/verde/100_.png'
     ];
-    percentage = 100;
 
     constructor() {
-        super(); //necessary access the parent functions
+        super(); //enables access to extended class
         this.loadImages(this.IMAGES);
-        this.x = 10;
-        this.y = 5;
+        this.x = 20;
+        this.y = 0;
         this.width = 200;
         this.height = 60;
-        this.setPercentage(100); // set the first image of 100%
+        this.setPercentage(100);
     }
 
-    //setPercentage(50);
+    /**
+     * 
+     * @param {string} percentage - checkCollisions() world.class.js 
+     */
     setPercentage(percentage) {
-        this.percentage = percentage; // => 0-5 to get the right image 
+        this.percentage = percentage; //set it as global variable
         let path = this.IMAGES[this.resolveImagesIndex()];
-        this.img = this.imageCache[path]; //change image
+        this.img = this.imageCache[path]; //updates img variable in drawableObjects 
     }
 
     resolveImagesIndex() {

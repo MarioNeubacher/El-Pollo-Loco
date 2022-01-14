@@ -73,12 +73,16 @@ window.addEventListener("keydown", (e) => { //arrow keys only triggered by onkey
         keyboard.SPACE = true;
     }
 
-    if (e.keyCode == 68) {
-        keyboard.D = true;
+    if (e.keyCode == 68 && e.repeat == false) {
+        if (keyboard.THROW_START < keyboard.THROW_END && !keyboard.D) {
+            keyboard.THROW_START = new Date().getTime();
+            keyboard.D = true;
+        }
     }
 });
 
 window.addEventListener("keyup", (e) => { //arrow keys only triggered by onkeydown, not onkeypress
+    /* console.log(e.keyCode); */
     if (e.keyCode == 39) {
         keyboard.RIGHT = false;
     }
@@ -100,6 +104,7 @@ window.addEventListener("keyup", (e) => { //arrow keys only triggered by onkeydo
     }
 
     if (e.keyCode == 68) {
+        keyboard.THROW_END = new Date().getTime();
         keyboard.D = false;
     }
 });
