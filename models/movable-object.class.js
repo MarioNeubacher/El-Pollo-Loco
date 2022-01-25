@@ -3,9 +3,23 @@ class MovableObject extends DrawableObject {
     otherDirection = false;
     speedY = 0;
     acceleration = 2.5;
-    
     lastHit = 0;
-    groundPos = 130;
+    groundPos = 0;
+
+    moveRight() {
+        this.lastIdle = 0;
+        this.x += this.speed;
+    }
+
+    moveLeft() {
+        this.lastIdle = 0;
+        this.x -= this.speed;
+    }
+
+    jump() {
+        this.lastIdle = 0;
+        this.speedY = 30;
+    }
 
     applyGravity() {
         setInterval(() => {
@@ -17,11 +31,7 @@ class MovableObject extends DrawableObject {
     }
 
     isAboveGround() {
-        if (this instanceof ThrowableObject) { //Throw object should always fall
-            return true;
-        } else {
-            return this.y < this.groundPos;
-        }
+        return this.y < this.groundPos;
     }
 
     /**
@@ -37,22 +47,30 @@ class MovableObject extends DrawableObject {
     }
 
     hit() {
-        this.energyAmount -= 5;
-        if (this.energyAmount < 0) {
-            this.energyAmount = 0;
-        } else {
+        this.energy -= 5;
+        if (this.energy > 0) {
             this.lastHit = new Date().getTime(); //ms from 1970
+        } else {
+            this.isDead();
         }
     }
 
+    /**
+     * Function gets triggered when 'true' that hit during the last ..s
+     * @returns - true, if hit during the last ..s
+     */
     isHurt() {
         let timepassed = new Date().getTime() - this.lastHit; //Difference in ms
         timepassed = timepassed / 1000; //difference in s
-        return timepassed < 0.5; //hit during last ..s, returns "true"
+        return timepassed < 0.5; 
     }
 
+    /**
+     * 
+     * @returns - true, if energy = 0 
+     */
     isDead() {
-        return this.energyAmount == 0;
+        return this.energy == 0;
     }
 
     playAnimation(images) {
@@ -61,17 +79,5 @@ class MovableObject extends DrawableObject {
         let path = images[i];
         this.img = this.imageCache[path];
         this.currentImage++;
-    }
-
-    moveRight() {
-        this.x += this.speed;
-    }
-
-    moveLeft() {
-        this.x -= this.speed;
-    }
-
-    jump() {
-        this.speedY = 30;
     }
 }

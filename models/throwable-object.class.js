@@ -1,6 +1,9 @@
 class ThrowableObject extends MovableObject {
 
+    hasPlayed = false;
     AUDIOS = ASSETS['AUDIOS'];
+    groundPos = 320;
+    isBroken = false;
 
     IMAGES_THROW = [
         'img/6.botella/Rotación/Mesa de trabajo 1 copia 3.png',
@@ -40,14 +43,17 @@ class ThrowableObject extends MovableObject {
         this.applyGravity();
         this.AUDIOS['throw_sound'].play();
         setInterval(() => {
-            this.x += 15;
-            this.playAnimation(this.IMAGES_THROW);
-        }, 100);
-    }
-
-    bottleHits() {
-        setInterval(() => {
-            this.playAnimation(this.IMAGES_SPLASH);
-        }, 100);
+            if (this.isAboveGround()) {
+                this.x += 15;
+                this.playAnimation(this.IMAGES_THROW);
+            } else {
+                this.playAnimation(this.IMAGES_SPLASH);
+                if (!this.hasPlayed) {
+                    this.AUDIOS['glass_sound'].play();
+                    this.hasPlayed = true;
+                }  
+                this.isBroken = true;
+            }
+        }, 50);
     }
 }

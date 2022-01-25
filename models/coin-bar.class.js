@@ -1,5 +1,7 @@
 class CoinBar extends DrawableObject {
 
+    coinAmount = 0;
+
     IMAGES = [
         'img/7.Marcadores/Barra/Marcador moneda/Naranja/0_.png',
         'img/7.Marcadores/Barra/Marcador moneda/Naranja/20_ .png',

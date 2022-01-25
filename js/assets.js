@@ -1,12 +1,14 @@
 const ASSETS = {
     AUDIOS: {
+        chicken_sound: new Audio('audio/chicken.mp3'),
         coin_sound: new Audio('audio/coin.mp3'),
-        move_sound: new Audio('audio/running.mp3'),
-        jump_sound: new Audio('audio/jump.mp3'),
-        hurt_sound: new Audio('audio/hurt.mp3'),
-        dead_sound: new Audio('audio/dead.mp3'),
         collectBottle_sound: new Audio('audio/collectBottle.mp3'),
+        dead_sound: new Audio('audio/dead.mp3'),
+        gameMusic: new Audio('audio/gameMusic.mp3'),
         glass_sound: new Audio('audio/glass.mp3'),
+        hurt_sound: new Audio('audio/hurt.mp3'),
+        jump_sound: new Audio('audio/jump.mp3'),
+        move_sound: new Audio('audio/running.mp3'),
         throw_sound: new Audio('audio/throw.mp3')
     },
 
@@ -68,6 +70,18 @@ const ASSETS = {
             'img/2.Secuencias_Personaje-Pepe-corrección/4.Herido/H-41.png',
             'img/2.Secuencias_Personaje-Pepe-corrección/4.Herido/H-42.png',
             'img/2.Secuencias_Personaje-Pepe-corrección/4.Herido/H-43.png'
+        ],
+        coins: [
+            'img/8.Coin/Moneda1.png',
+            'img/8.Coin/Moneda2.png'
+        ],
+        chicken_walking: [
+            'img/3.Secuencias_Enemy_básico/Versión_Gallinita (estas salen por orden de la gallina gigantona)/1.Ga_paso_derecho.png',
+            'img/3.Secuencias_Enemy_básico/Versión_Gallinita (estas salen por orden de la gallina gigantona)/2-Ga_centro.png',
+            'img/3.Secuencias_Enemy_básico/Versión_Gallinita (estas salen por orden de la gallina gigantona)/3.Ga_paso izquierdo.png'
+        ],
+        chicken_dead: [
+            'img/3.Secuencias_Enemy_básico/Versión_Gallinita (estas salen por orden de la gallina gigantona)/4.G_muerte.png'
         ]
     },
 

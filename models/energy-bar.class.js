@@ -1,6 +1,6 @@
 class EnergyBar extends DrawableObject {
 
-   
+    energyAmount = 100;
 
     IMAGES = [
         'img/7.Marcadores/Barra/Marcador vida/Naranja/0_ .png',
@@ -23,7 +23,7 @@ class EnergyBar extends DrawableObject {
 
     /**
      * 
-     * @param {string} percentage - checkCollisions() world.class.js 
+     * @param {string} percentage - changeStatusbar() world.class.js 
      */
     setPercentage(percentage) {
         this.percentage = percentage; //set it as global variable

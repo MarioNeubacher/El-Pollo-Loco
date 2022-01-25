@@ -9,7 +9,7 @@ class DrawableObject {
 
     /**
      * First image unchangeable
-     * @param {} path - images origin
+     * @param {} path - relative path
      */ 
     loadImage(path) {
         this.img = new Image(); //"new Image()" is same as 'document.getElementById('image').innerHTML = <img src="">'
@@ -18,7 +18,7 @@ class DrawableObject {
 
      /**
      * Enables to change images 
-     * @param {Array} arr - images origin 
+     * @param {Array} arr - assets.js
      */
     loadImages(arr) { 
         arr.forEach((path) => {
@@ -40,7 +40,7 @@ class DrawableObject {
         if (this instanceof Character || this instanceof Chicken || this instanceof Bottle || this instanceof Coin || this instanceof ThrowableObject) {
             ctx.beginPath();
             ctx.lineWidth = '5';
-            ctx.strokeStyle = 'red';
+            ctx.strokeStyle = 'transparent';
             ctx.rect(this.x, this.y, this.width, this.height);
             ctx.stroke();
         }
