@@ -2,14 +2,7 @@ class BottleBar extends DrawableObject {
 
     bottleAmount = 0;
 
-    IMAGES = [
-        'img/7.Marcadores/Barra/Marcador_botella/Naranja/0_.png',
-        'img/7.Marcadores/Barra/Marcador_botella/Naranja/20_.png',
-        'img/7.Marcadores/Barra/Marcador_botella/Azul/40_.png',
-        'img/7.Marcadores/Barra/Marcador_botella/Azul/60_.png',
-        'img/7.Marcadores/Barra/Marcador_botella/Verde/80_.png',
-        'img/7.Marcadores/Barra/Marcador_botella/Verde/100_.png'
-    ];
+    IMAGES = ASSETS['IMAGES']['bottle_bar'];
 
     constructor () { 
         super(); //enables access to extended class

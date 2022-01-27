@@ -1,9 +1,6 @@
 class Bottle extends MovableObject {
 
-    IMAGES = [
-        'img/6.botella/2.Botella_enterrada1.png',
-        'img/6.botella/2.Botella_enterrada2.png'
-    ];
+    IMAGES = ASSETS['IMAGES']['bottles'];
 
     constructor() {
         super(); //enables access to extended class

@@ -59,7 +59,7 @@ const level1 = new Level(
 function createClouds(amount) {
     let clouds = [];
     for (let i = 0; i < amount; i++) {
-        clouds.push(new Cloud(800 * i));
+        clouds.push(new Cloud(800 * i)); //new picture at x = 800 so it looks even
     }
 
     return clouds;

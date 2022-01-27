@@ -2,9 +2,6 @@ class Cloud extends MovableObject {
     y = 0;
     height = 350;
     width = 800;
-    IMAGES_CLOUDS = [
-        'img/5.Fondo/Capas/4.nubes/Completo.png'
-    ];
     world;
 
     constructor(x) {

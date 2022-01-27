@@ -47,6 +47,7 @@ class MovableObject extends DrawableObject {
     }
 
     hit() {
+        this.lastIdle = 0;
         this.energy -= 5;
         if (this.energy > 0) {
             this.lastHit = new Date().getTime(); //ms from 1970

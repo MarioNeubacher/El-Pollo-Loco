@@ -67,7 +67,7 @@ class World {
                 this.coinBar.coinAmount += 21;
                 this.coinBar.setPercentage(this.coinBar.coinAmount);
                 this.level.coins.splice(index, 1);
-                this.AUDIOS['coin_sound'].play();
+               /*  this.AUDIOS['coin_sound'].play(); */
             }
         });
     }
@@ -78,22 +78,33 @@ class World {
                 this.bottleBar.bottleAmount++;
                 this.bottleBar.setPercentage(this.bottleBar.bottleAmount);
                 this.level.bottles.splice(index, 1);
-                this.AUDIOS['collectBottle_sound'].play();
+                /* this.AUDIOS['collectBottle_sound'].play(); */
             }
         });
     }
 
     checkBottleCollision() {
         this.character.throwableObjects.forEach((object) => {
+            this.bottleOnGround(object);
             this.bottleOnChicken(object);
             this.checkBrokenObjects(object);
         });
     }
 
+    bottleOnGround(object) {
+        this.level.enemies.forEach((enemy) => {
+            if (!object.isColliding(enemy) && !object.isAboveGround()) {
+                object.break();
+            }
+        });
+    }
+
     bottleOnChicken(object) {
         this.level.enemies.forEach((chicken) => {
-            if (object.isColliding(chicken) && object.isBroken) {
+            if (object.isColliding(chicken)) {
                 chicken.hit();
+                object.chickenHit = true;
+                object.breakOnEnemy();
             }
         });
     }
@@ -111,9 +122,10 @@ class World {
     
     checkBrokenObjects(object) {
         if (object.isBroken == true) {
-            let i = this.character.throwableObjects.indexOf(object); //to determine which bottle
-
-            this.character.throwableObjects.splice(i, 1);
+            setTimeout(() => {
+                let i = this.character.throwableObjects.indexOf(object); //to determine which bottle
+                this.character.throwableObjects.splice(i, 1);
+            }, this.bottleTime);
         }   
     }
 

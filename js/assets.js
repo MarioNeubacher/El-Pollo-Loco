@@ -11,7 +11,6 @@ const ASSETS = {
         move_sound: new Audio('audio/running.mp3'),
         throw_sound: new Audio('audio/throw.mp3')
     },
-
     IMAGES: {
         walking: [
             'img/2.Secuencias_Personaje-Pepe-corrección/2.Secuencia_caminata/W-21.png',
@@ -75,6 +74,10 @@ const ASSETS = {
             'img/8.Coin/Moneda1.png',
             'img/8.Coin/Moneda2.png'
         ],
+        bottles: [
+            'img/6.botella/2.Botella_enterrada1.png',
+            'img/6.botella/2.Botella_enterrada2.png'
+        ],
         chicken_walking: [
             'img/3.Secuencias_Enemy_básico/Versión_Gallinita (estas salen por orden de la gallina gigantona)/1.Ga_paso_derecho.png',
             'img/3.Secuencias_Enemy_básico/Versión_Gallinita (estas salen por orden de la gallina gigantona)/2-Ga_centro.png',
@@ -82,31 +85,54 @@ const ASSETS = {
         ],
         chicken_dead: [
             'img/3.Secuencias_Enemy_básico/Versión_Gallinita (estas salen por orden de la gallina gigantona)/4.G_muerte.png'
+        ],
+        bottle_throw: [
+            'img/6.botella/Rotación/Mesa de trabajo 1 copia 3.png',
+            'img/6.botella/Rotación/Mesa de trabajo 1 copia 4.png',
+            'img/6.botella/Rotación/Mesa de trabajo 1 copia 5.png',
+            'img/6.botella/Rotación/Mesa de trabajo 1 copia 6.png'
+        ],
+        bottle_splash: [
+            'img/6.botella/Rotación/Splash de salsa/Mesa de trabajo 1 copia 7.png',
+            'img/6.botella/Rotación/Splash de salsa/Mesa de trabajo 1 copia 8.png',
+            'img/6.botella/Rotación/Splash de salsa/Mesa de trabajo 1 copia 9.png',
+            'img/6.botella/Rotación/Splash de salsa/Mesa de trabajo 1 copia 10.png',
+            'img/6.botella/Rotación/Splash de salsa/Mesa de trabajo 1 copia 11.png',
+            'img/6.botella/Rotación/Splash de salsa/Mesa de trabajo 1 copia 12.png'
+        ],
+        energy_bar: [
+            'img/7.Marcadores/Barra/Marcador vida/Naranja/0_ .png',
+            'img/7.Marcadores/Barra/Marcador vida/Naranja/20__1.png',
+            'img/7.Marcadores/Barra/Marcador vida/azul/40_.png',
+            'img/7.Marcadores/Barra/Marcador vida/azul/60_.png',
+            'img/7.Marcadores/Barra/Marcador vida/verde/80_.png',
+            'img/7.Marcadores/Barra/Marcador vida/verde/100_.png'
+        ],
+        coin_bar: [
+            'img/7.Marcadores/Barra/Marcador moneda/Naranja/0_.png',
+            'img/7.Marcadores/Barra/Marcador moneda/Naranja/20_ .png',
+            'img/7.Marcadores/Barra/Marcador moneda/azul/40_.png',
+            'img/7.Marcadores/Barra/Marcador moneda/azul/60_.png',
+            'img/7.Marcadores/Barra/Marcador moneda/Verde/80_  copia 2.png',
+            'img/7.Marcadores/Barra/Marcador moneda/Verde/100_ copia 2.png'
+        ],
+        bottle_bar: [
+            'img/7.Marcadores/Barra/Marcador_botella/Naranja/0_.png',
+            'img/7.Marcadores/Barra/Marcador_botella/Naranja/20_.png',
+            'img/7.Marcadores/Barra/Marcador_botella/Azul/40_.png',
+            'img/7.Marcadores/Barra/Marcador_botella/Azul/60_.png',
+            'img/7.Marcadores/Barra/Marcador_botella/Verde/80_.png',
+            'img/7.Marcadores/Barra/Marcador_botella/Verde/100_.png'
+        ],
+        endboss: [
+            'img/4.Secuencias_Enemy_gigantón-Doña_Gallinota-/2.Ateción-ataque/1.Alerta/G5.png',
+            'img/4.Secuencias_Enemy_gigantón-Doña_Gallinota-/2.Ateción-ataque/1.Alerta/G6.png',
+            'img/4.Secuencias_Enemy_gigantón-Doña_Gallinota-/2.Ateción-ataque/1.Alerta/G7.png',
+            'img/4.Secuencias_Enemy_gigantón-Doña_Gallinota-/2.Ateción-ataque/1.Alerta/G8.png',
+            'img/4.Secuencias_Enemy_gigantón-Doña_Gallinota-/2.Ateción-ataque/1.Alerta/G9.png',
+            'img/4.Secuencias_Enemy_gigantón-Doña_Gallinota-/2.Ateción-ataque/1.Alerta/G10.png',
+            'img/4.Secuencias_Enemy_gigantón-Doña_Gallinota-/2.Ateción-ataque/1.Alerta/G11.png',
+            'img/4.Secuencias_Enemy_gigantón-Doña_Gallinota-/2.Ateción-ataque/1.Alerta/G12.png'
         ]
-    },
-
-    IMAGES_ENERGY_BAR: [
-        'img/7.Marcadores/Barra/Marcador vida/Naranja/0_ .png',
-        'img/7.Marcadores/Barra/Marcador vida/Naranja/20__1.png',
-        'img/7.Marcadores/Barra/Marcador vida/azul/40_.png',
-        'img/7.Marcadores/Barra/Marcador vida/azul/60_.png',
-        'img/7.Marcadores/Barra/Marcador vida/verde/80_.png',
-        'img/7.Marcadores/Barra/Marcador vida/verde/100_.png'
-    ],
-    IMAGES_COIN_BAR: [
-        'img/7.Marcadores/Barra/Marcador moneda/Naranja/0_.png',
-        'img/7.Marcadores/Barra/Marcador moneda/Naranja/20_ .png',
-        'img/7.Marcadores/Barra/Marcador moneda/azul/40_.png',
-        'img/7.Marcadores/Barra/Marcador moneda/azul/60_.png',
-        'img/7.Marcadores/Barra/Marcador moneda/Verde/80_  copia 2.png',
-        'img/7.Marcadores/Barra/Marcador moneda/Verde/100_ copia 2.png'
-    ],
-    IMAGES_BOTTLE_BAR: [
-        'img/7.Marcadores/Barra/Marcador_botella/Naranja/0_.png',
-        'img/7.Marcadores/Barra/Marcador_botella/Naranja/20_.png',
-        'img/7.Marcadores/Barra/Marcador_botella/Azul/40_.png',
-        'img/7.Marcadores/Barra/Marcador_botella/Azul/60_.png',
-        'img/7.Marcadores/Barra/Marcador_botella/Verde/80_.png',
-        'img/7.Marcadores/Barra/Marcador_botella/Verde/100_.png'
-    ]
+    }
 }

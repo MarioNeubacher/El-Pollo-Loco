@@ -3,10 +3,10 @@ class Chicken extends MovableObject {
     height = 60;
     width = 80;
     energy = 5;
-    AUDIOS = ASSETS['AUDIOS'];
     hasPlayed = false;
     groundPos = 120;
     
+    AUDIOS = ASSETS['AUDIOS'];
     IMAGES = ASSETS['IMAGES'];
 
     constructor() {
@@ -34,7 +34,7 @@ class Chicken extends MovableObject {
                 this.applyGravity();
                 this.groundPos = 1000;
                 if(!this.hasPlayed){
-                    this.AUDIOS['chicken_sound'].play();
+                    /* this.AUDIOS['chicken_sound'].play(); */
                     this.hasPlayed = true;
                 }
             }

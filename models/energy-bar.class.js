@@ -2,14 +2,7 @@ class EnergyBar extends DrawableObject {
 
     energyAmount = 100;
 
-    IMAGES = [
-        'img/7.Marcadores/Barra/Marcador vida/Naranja/0_ .png',
-        'img/7.Marcadores/Barra/Marcador vida/Naranja/20__1.png',
-        'img/7.Marcadores/Barra/Marcador vida/azul/40_.png',
-        'img/7.Marcadores/Barra/Marcador vida/azul/60_.png',
-        'img/7.Marcadores/Barra/Marcador vida/verde/80_.png',
-        'img/7.Marcadores/Barra/Marcador vida/verde/100_.png'
-    ];
+    IMAGES = ASSETS['IMAGES']['energy_bar'];
 
     constructor() {
         super(); //enables access to extended class

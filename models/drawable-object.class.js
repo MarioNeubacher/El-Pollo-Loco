@@ -40,7 +40,7 @@ class DrawableObject {
         if (this instanceof Character || this instanceof Chicken || this instanceof Bottle || this instanceof Coin || this instanceof ThrowableObject) {
             ctx.beginPath();
             ctx.lineWidth = '5';
-            ctx.strokeStyle = 'transparent';
+            ctx.strokeStyle = 'red';
             ctx.rect(this.x, this.y, this.width, this.height);
             ctx.stroke();
         }
