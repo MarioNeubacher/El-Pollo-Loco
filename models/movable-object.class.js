@@ -1,4 +1,4 @@
-class MovableObject extends DrawableObject { 
+class MovableObject extends DrawableObject {
     speed = 0.15;
     otherDirection = false;
     speedY = 0;
@@ -34,16 +34,24 @@ class MovableObject extends DrawableObject {
         return this.y < this.groundPos;
     }
 
+    isLittleAboveGroundForSplashIntervallDelay() {
+        return this.speedY < -30;
+    }
+
+    isLittleAboveGroundForGlassSoundDelay() {
+        return this.speedY < -10;
+    }
+
     /**
      * 
      * @param {string} mo - world.js collide...()
-     * @returns 
+     * @returns - true  
      */
-    isColliding(mo) { 
-        return this.x + this.width > mo.x &&
-            this.y + this.height > mo.y &&
-            this.x < mo.x &&
-            this.y < mo.y + mo.height
+    isColliding(mo) {
+        return this.x + (this.width - this.offsetRight) > mo.x + mo.offsetLeft &&
+            this.y + this.height > mo.y + mo.offsetTop &&
+            this.x + this.offsetLeft < mo.x + (mo.width - mo.offsetRight) &&
+            this.y + this.offsetTop < mo.y + (mo.height - mo.offsetBottom)
     }
 
     hit() {
@@ -63,7 +71,7 @@ class MovableObject extends DrawableObject {
     isHurt() {
         let timepassed = new Date().getTime() - this.lastHit; //Difference in ms
         timepassed = timepassed / 1000; //difference in s
-        return timepassed < 0.5; 
+        return timepassed < 0.5;
     }
 
     /**

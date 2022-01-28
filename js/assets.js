@@ -93,12 +93,12 @@ const ASSETS = {
             'img/6.botella/Rotación/Mesa de trabajo 1 copia 6.png'
         ],
         bottle_splash: [
+            'img/6.botella/Rotación/Splash de salsa/Mesa de trabajo 1 copia 11.png',
+            'img/6.botella/Rotación/Splash de salsa/Mesa de trabajo 1 copia 12.png',
             'img/6.botella/Rotación/Splash de salsa/Mesa de trabajo 1 copia 7.png',
             'img/6.botella/Rotación/Splash de salsa/Mesa de trabajo 1 copia 8.png',
             'img/6.botella/Rotación/Splash de salsa/Mesa de trabajo 1 copia 9.png',
-            'img/6.botella/Rotación/Splash de salsa/Mesa de trabajo 1 copia 10.png',
-            'img/6.botella/Rotación/Splash de salsa/Mesa de trabajo 1 copia 11.png',
-            'img/6.botella/Rotación/Splash de salsa/Mesa de trabajo 1 copia 12.png'
+            'img/6.botella/Rotación/Splash de salsa/Mesa de trabajo 1 copia 10.png'
         ],
         energy_bar: [
             'img/7.Marcadores/Barra/Marcador vida/Naranja/0_ .png',

@@ -1,5 +1,10 @@
 class Bottle extends MovableObject {
 
+    offsetRight = 20;
+    offsetLeft = 20;
+    offsetTop = 20;
+    offsetBottom = 20;
+
     IMAGES = ASSETS['IMAGES']['bottles'];
 
     constructor() {

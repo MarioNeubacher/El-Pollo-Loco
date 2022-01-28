@@ -11,6 +11,11 @@ class Character extends MovableObject {
     idleTime = 5001;
     lastIdle = new Date().getTime();
 
+    offsetRight = 30;
+    offsetLeft = 30;
+    offsetTop = 110;
+    offsetBottom = 0;
+
     throwableObjects = [];
 
     AUDIOS = ASSETS['AUDIOS'];

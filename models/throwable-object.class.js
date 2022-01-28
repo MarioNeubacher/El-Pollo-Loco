@@ -4,10 +4,13 @@ class ThrowableObject extends MovableObject {
     IMAGES = ASSETS['IMAGES'];
 
     groundPos = 362.5;
-    bottleTime = 100;
     hasPlayed = false;
     isBroken = false;
-    chickenHit = false;
+
+    offsetRight = 0;
+    offsetLeft = 0;
+    offsetTop = 0;
+    offsetBottom = 0;
 
     /**
      * 
@@ -30,27 +33,25 @@ class ThrowableObject extends MovableObject {
         /* this.AUDIOS['throw_sound'].play(); */
         this.speedY = 25;
         this.applyGravity();
-        this.fly();
-        this.break();
-    }
-
-    fly() {
         setInterval(() => {
             if (this.isAboveGround()) {
-                this.x += 15;
+                this.x += 30;
                 this.playAnimation(this.IMAGES['bottle_throw']);
             }
-        }, 50);
+        }, 100);
+    }
+
+    glasssound() {
+        /* if (!this.hasPlayed) {
+            this.AUDIOS['glass_sound'].play();
+            this.hasPlayed = true;
+        } */
     }
 
     break() {
         setInterval(() => {
-            /* if (!this.hasPlayed) {
-                this.AUDIOS['glass_sound'].play();
-                this.hasPlayed = true;
-            } */
             this.playAnimation(this.IMAGES['bottle_splash']);
-            this.isBroken = true;
-        }, this.bottleTime);
+        }, 125); 
+        this.isBroken = true;
     }
 }

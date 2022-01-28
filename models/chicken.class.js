@@ -5,6 +5,12 @@ class Chicken extends MovableObject {
     energy = 5;
     hasPlayed = false;
     groundPos = 120;
+
+    offsetRight = -10;
+    offsetLeft = 0;
+    offsetTop = 0;
+    offsetBottom = 0;
+
     
     AUDIOS = ASSETS['AUDIOS'];
     IMAGES = ASSETS['IMAGES'];
@@ -23,7 +29,7 @@ class Chicken extends MovableObject {
     animate(){
         setInterval(() => {
             this.moveLeft();
-        }, 1000 / 60);
+        }, 100);
 
         setInterval(() => {
             if (this.energy > 0) {

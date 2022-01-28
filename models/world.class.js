@@ -42,7 +42,7 @@ class World {
             this.checkCollisions();
             this.checkBottleCollision();
             this.checkThrowObjects();
-        }, 60);
+        }, 20);
     }
 
     checkCollisions() {
@@ -93,8 +93,11 @@ class World {
 
     bottleOnGround(object) {
         this.level.enemies.forEach((enemy) => {
-            if (!object.isColliding(enemy) && !object.isAboveGround()) {
+            if (!object.isColliding(enemy) && object.isLittleAboveGroundForSplashIntervallDelay() && !object.isBroken) { 
                 object.break();
+            }
+            if (!object.isColliding(enemy) && object.isLittleAboveGroundForGlassSoundDelay() && !object.isBroken) {
+                object.glasssound();
             }
         });
     }
@@ -103,8 +106,7 @@ class World {
         this.level.enemies.forEach((chicken) => {
             if (object.isColliding(chicken)) {
                 chicken.hit();
-                object.chickenHit = true;
-                object.breakOnEnemy();
+                object.break();
             }
         });
     }
@@ -125,7 +127,7 @@ class World {
             setTimeout(() => {
                 let i = this.character.throwableObjects.indexOf(object); //to determine which bottle
                 this.character.throwableObjects.splice(i, 1);
-            }, this.bottleTime);
+            }, 125 * 6); //6 splash Animation pics
         }   
     }
 
