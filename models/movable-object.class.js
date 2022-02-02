@@ -35,23 +35,11 @@ class MovableObject extends DrawableObject {
     }
 
     isLittleAboveGroundForSplashIntervallDelay() {
-        return this.speedY < -30;
+        return this.speedY < -37.5;
     }
 
     isLittleAboveGroundForGlassSoundDelay() {
         return this.speedY < -10;
-    }
-
-    /**
-     * 
-     * @param {string} mo - world.js collide...()
-     * @returns - true  
-     */
-    isColliding(mo) {
-        return this.x + (this.width - this.offsetRight) > mo.x + mo.offsetLeft &&
-            this.y + this.height > mo.y + mo.offsetTop &&
-            this.x + this.offsetLeft < mo.x + (mo.width - mo.offsetRight) &&
-            this.y + this.offsetTop < mo.y + (mo.height - mo.offsetBottom)
     }
 
     hit() {
@@ -60,7 +48,7 @@ class MovableObject extends DrawableObject {
         if (this.energy > 0) {
             this.lastHit = new Date().getTime(); //ms from 1970
         } else {
-            this.isDead();
+            this.energy = 0;
         }
     }
 
@@ -88,5 +76,13 @@ class MovableObject extends DrawableObject {
         let path = images[i];
         this.img = this.imageCache[path];
         this.currentImage++;
+    }
+
+    getBottomPos() {
+        return this.y + this.height;
+    }
+
+    getTopPos() {
+        return this.y;
     }
 }

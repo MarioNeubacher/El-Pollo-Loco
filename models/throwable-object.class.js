@@ -1,32 +1,35 @@
-class ThrowableObject extends MovableObject {
+class ThrowableObject extends CollidableObject {
 
     AUDIOS = ASSETS['AUDIOS'];
     IMAGES = ASSETS['IMAGES'];
+
+    throwableObject;
 
     groundPos = 362.5;
     hasPlayed = false;
     isBroken = false;
 
-    offsetRight = 0;
-    offsetLeft = 0;
-    offsetTop = 0;
-    offsetBottom = 0;
-
     /**
      * 
-     * @param {numbers} x - checkThrowObjects - world.js
-     * @param {numbers} y - checkThrowObjects - world.js
+     * @param {numbers} x - character.js
+     * @param {numbers} y - character.js
      */
     constructor(x, y) {
         super(); //enables access to extended class
-        this.loadImage('img/7.Marcadores/Icono/Botella.png'); //super() only once, after that use this
-        this.loadImages(this.IMAGES['bottle_throw']);
-        this.loadImages(this.IMAGES['bottle_splash']);
+        this.loadImage(this.IMAGES['bottle_throw'][0]); //super() only once, after that use this
+        this.loadImages();
         this.x = x;
         this.y = y;
         this.height = 60;
         this.width = 50;
         this.throw();
+    }
+
+    //filters through all the arrays in the array 'IMAGES'
+    loadImages() { 
+        for (const status in this.IMAGES) {
+            super.loadImages(this.IMAGES[status]);
+        }
     }
 
     throw() {

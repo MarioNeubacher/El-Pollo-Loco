@@ -1,31 +1,29 @@
-class CoinBar extends DrawableObject {
+class EndbossEnergyBar extends DrawableObject {
+   /*  energyAmount = 25;
 
-    coinAmount = 0;
-
-    IMAGES = ASSETS['IMAGES']['coin_bar'];
+    IMAGES = ASSETS['IMAGES']['endboss_energy_bar'];
 
     constructor() {
         super(); //enables access to extended class
         this.loadImages(this.IMAGES);
-        this.x = 10;
-        this.y = 40;
+        this.x = 50;
+        this.y = 0;
         this.width = 200;
-        this.height = 50;
-        this.setPercentage(0);
-    }
+        this.height = 60;
+    } */
 
     /**
      * 
-     * @param {string} percentage - checkCollisions() world.class.js 
+     * @param {string} percentage - world.class.js 
      */
-    setPercentage(percentage) {
+    /*  setPercentage(percentage) {
         this.percentage = percentage; //set it as global variable
         let path = this.IMAGES[this.resolveImagesIndex()];
         this.img = this.imageCache[path]; //updates img variable in drawableObjects 
     }
 
     resolveImagesIndex() {
-        if (this.percentage > 100) {
+        if (this.percentage == 100) {
             return 5;
         } else if (this.percentage > 80) {
             return 4;
@@ -38,5 +36,5 @@ class CoinBar extends DrawableObject {
         } else {
             return 0;
         }
-    }
+    } */
 }

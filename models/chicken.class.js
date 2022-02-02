@@ -1,4 +1,4 @@
-class Chicken extends MovableObject {
+class Chicken extends CollidableObject {
     y = 360;
     height = 60;
     width = 80;
@@ -6,27 +6,27 @@ class Chicken extends MovableObject {
     hasPlayed = false;
     groundPos = 120;
 
-    offsetRight = -10;
-    offsetLeft = 0;
-    offsetTop = 0;
-    offsetBottom = 0;
-
-    
     AUDIOS = ASSETS['AUDIOS'];
     IMAGES = ASSETS['IMAGES'];
 
     constructor() {
         super(); //enables access to extended class
-        this.loadImage('img/3.Secuencias_Enemy_básico/Versión_Gallinita (estas salen por orden de la gallina gigantona)/1.Ga_paso_derecho.png');
-        this.loadImages(this.IMAGES['chicken_walking']);
-        this.loadImages(this.IMAGES['chicken_dead']);
+        this.loadImage(this.IMAGES['chicken_walking'][0]);
+        this.loadImages();
         this.x = 200 + Math.random() * 2250; //math.random generates random number between 0 and 1 = range is 200 to 700
-        this.speed = 0.15 + Math.random() * 0.5;
-        this.animate();  
+        this.speed = 0.80 + Math.random() * 0.5;
+        this.animate();
         this.applyGravity();
     }
 
-    animate(){
+    //filters through all the arrays in the array 'IMAGES'
+    loadImages() { 
+        for (const status in this.IMAGES) {
+            super.loadImages(this.IMAGES[status]);
+        }
+    }
+
+    animate() {
         setInterval(() => {
             this.moveLeft();
         }, 100);
@@ -35,14 +35,12 @@ class Chicken extends MovableObject {
             if (this.energy > 0) {
                 this.playAnimation(this.IMAGES['chicken_walking']);
             } else {
-                this.playAnimation(this.IMAGES['chicken_dead']);  
+                this.playAnimation(this.IMAGES['chicken_dead']);
                 this.speed = 0;
-                this.applyGravity();
-                this.groundPos = 1000;
-                if(!this.hasPlayed){
-                    /* this.AUDIOS['chicken_sound'].play(); */
+                /* if (!this.hasPlayed) {
+                    this.AUDIOS['chicken_sound'].play();
                     this.hasPlayed = true;
-                }
+                } */
             }
         }, 100);
     }

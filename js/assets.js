@@ -70,6 +70,9 @@ const ASSETS = {
             'img/2.Secuencias_Personaje-Pepe-corrección/4.Herido/H-42.png',
             'img/2.Secuencias_Personaje-Pepe-corrección/4.Herido/H-43.png'
         ],
+        cloud: [
+            'img/5.Fondo/Capas/4.nubes/Completo.png'
+        ],
         coins: [
             'img/8.Coin/Moneda1.png',
             'img/8.Coin/Moneda2.png'
@@ -86,6 +89,14 @@ const ASSETS = {
         chicken_dead: [
             'img/3.Secuencias_Enemy_básico/Versión_Gallinita (estas salen por orden de la gallina gigantona)/4.G_muerte.png'
         ],
+        little_chicken_walking: [
+            'img/3.Secuencias_Enemy_básico/Versión_pollito/1.Paso_derecho.png',
+            'img/3.Secuencias_Enemy_básico/Versión_pollito/2.Centro.png',
+            'img/3.Secuencias_Enemy_básico/Versión_pollito/3.Paso_izquierdo.png'
+        ],
+        little_chicken_dead: [
+            'img/3.Secuencias_Enemy_básico/Versión_pollito/4.Muerte.png'
+        ],
         bottle_throw: [
             'img/6.botella/Rotación/Mesa de trabajo 1 copia 3.png',
             'img/6.botella/Rotación/Mesa de trabajo 1 copia 4.png',
@@ -93,12 +104,12 @@ const ASSETS = {
             'img/6.botella/Rotación/Mesa de trabajo 1 copia 6.png'
         ],
         bottle_splash: [
+            'img/6.botella/Rotación/Splash de salsa/Mesa de trabajo 1 copia 10.png',
             'img/6.botella/Rotación/Splash de salsa/Mesa de trabajo 1 copia 11.png',
             'img/6.botella/Rotación/Splash de salsa/Mesa de trabajo 1 copia 12.png',
             'img/6.botella/Rotación/Splash de salsa/Mesa de trabajo 1 copia 7.png',
             'img/6.botella/Rotación/Splash de salsa/Mesa de trabajo 1 copia 8.png',
-            'img/6.botella/Rotación/Splash de salsa/Mesa de trabajo 1 copia 9.png',
-            'img/6.botella/Rotación/Splash de salsa/Mesa de trabajo 1 copia 10.png'
+            'img/6.botella/Rotación/Splash de salsa/Mesa de trabajo 1 copia 9.png'
         ],
         energy_bar: [
             'img/7.Marcadores/Barra/Marcador vida/Naranja/0_ .png',
@@ -124,6 +135,11 @@ const ASSETS = {
             'img/7.Marcadores/Barra/Marcador_botella/Verde/80_.png',
             'img/7.Marcadores/Barra/Marcador_botella/Verde/100_.png'
         ],
+        endboss_energy_bar: [
+            'img/7.Marcadores/Muestra_barra_Naranja.png',
+            'img/7.Marcadores/Muestra_barra_Azul.png',
+            'img/7.Marcadores/Muestra_barra_Verde.png'
+        ],
         endboss: [
             'img/4.Secuencias_Enemy_gigantón-Doña_Gallinota-/2.Ateción-ataque/1.Alerta/G5.png',
             'img/4.Secuencias_Enemy_gigantón-Doña_Gallinota-/2.Ateción-ataque/1.Alerta/G6.png',
@@ -133,6 +149,11 @@ const ASSETS = {
             'img/4.Secuencias_Enemy_gigantón-Doña_Gallinota-/2.Ateción-ataque/1.Alerta/G10.png',
             'img/4.Secuencias_Enemy_gigantón-Doña_Gallinota-/2.Ateción-ataque/1.Alerta/G11.png',
             'img/4.Secuencias_Enemy_gigantón-Doña_Gallinota-/2.Ateción-ataque/1.Alerta/G12.png'
+        ],
+        endboss_hurt: [
+            'img/4.Secuencias_Enemy_gigantón-Doña_Gallinota-/3.Herida/G21.png',
+            'img/4.Secuencias_Enemy_gigantón-Doña_Gallinota-/3.Herida/G22.png',
+            'img/4.Secuencias_Enemy_gigantón-Doña_Gallinota-/3.Herida/G23.png'
         ]
     }
 }

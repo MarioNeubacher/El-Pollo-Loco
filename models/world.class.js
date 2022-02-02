@@ -5,17 +5,22 @@ class World {
     keyboard; //game.js
     camera_x = 0;
     assets;
-    
+    isAlive = true;
+
+    throwableObj;
+
     AUDIOS = ASSETS['AUDIOS'];
 
     energyBar = new EnergyBar();
     coinBar = new CoinBar();
     bottleBar = new BottleBar();
+    /*  endbossEnergyBar = new EndbossEnergyBar(); */
 
     character = new Character();
     coins = new Coin();
     bottle = new Bottle();
     chicken = new Chicken();
+    endboss = new Endboss();
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -34,31 +39,41 @@ class World {
         this.character.world = this;
     }
 
-    /**
-     * Updates every 200ms 
-     */
     run() {
         setInterval(() => {
             this.checkCollisions();
             this.checkBottleCollision();
-            this.checkThrowObjects();
         }, 20);
     }
 
     checkCollisions() {
-        this.collideEnemy();
+        this.checkEnemyCollision();
         this.collideCoin();
         this.collideBottle();
     }
 
-    collideEnemy() {
+    checkEnemyCollision() {
         this.level.enemies.forEach((enemy) => {
-            if (this.character.isColliding(enemy)) {
-                this.character.hit();
-                this.energyBar.energyAmount -= 1;
-                this.energyBar.setPercentage(this.energyBar.energyAmount);
+            if (this.character.isColliding(enemy) && !enemy.isDead()) { //!enemy.isDead so 1 chicken can die 
+                if (this.character.isStamping(enemy)) {
+                    enemy.hit();
+                    this.checkDeadEnemy(enemy);
+                } else {
+                    this.character.hit();
+                    this.energyBar.energyAmount -= 1;
+                    this.energyBar.setPercentage(this.energyBar.energyAmount);
+                }
             }
         });
+    }
+
+    checkBrokenObjects(object) {
+        if (object.isBroken == true) {
+            setTimeout(() => {
+                let i = this.character.throwableObjects.indexOf(object); //to determine which bottle
+                this.character.throwableObjects.splice(i, 1);
+            }, 125 * 6); //6 splash Animation pics
+        }
     }
 
     collideCoin() {
@@ -67,7 +82,7 @@ class World {
                 this.coinBar.coinAmount += 21;
                 this.coinBar.setPercentage(this.coinBar.coinAmount);
                 this.level.coins.splice(index, 1);
-               /*  this.AUDIOS['coin_sound'].play(); */
+                /*  this.AUDIOS['coin_sound'].play(); */
             }
         });
     }
@@ -75,9 +90,9 @@ class World {
     collideBottle() {
         this.level.bottles.forEach((bottle, index) => {
             if (this.character.isColliding(bottle)) {
+                this.level.bottles.splice(index, 1);
                 this.bottleBar.bottleAmount++;
                 this.bottleBar.setPercentage(this.bottleBar.bottleAmount);
-                this.level.bottles.splice(index, 1);
                 /* this.AUDIOS['collectBottle_sound'].play(); */
             }
         });
@@ -87,13 +102,14 @@ class World {
         this.character.throwableObjects.forEach((object) => {
             this.bottleOnGround(object);
             this.bottleOnChicken(object);
+            this.bottleOnEndboss(object);
             this.checkBrokenObjects(object);
         });
     }
 
     bottleOnGround(object) {
         this.level.enemies.forEach((enemy) => {
-            if (!object.isColliding(enemy) && object.isLittleAboveGroundForSplashIntervallDelay() && !object.isBroken) { 
+            if (!object.isColliding(enemy) && object.isLittleAboveGroundForSplashIntervallDelay() && !object.isBroken) {
                 object.break();
             }
             if (!object.isColliding(enemy) && object.isLittleAboveGroundForGlassSoundDelay() && !object.isBroken) {
@@ -103,32 +119,31 @@ class World {
     }
 
     bottleOnChicken(object) {
-        this.level.enemies.forEach((chicken) => {
-            if (object.isColliding(chicken)) {
-                chicken.hit();
+        this.level.enemies.forEach((enemy) => {
+            if (object.isColliding(enemy) && !object.isBroken) {
+                enemy.hit();
+                this.checkDeadEnemy(enemy);
                 object.break();
             }
         });
     }
 
-    checkThrowObjects() {
-        if (this.keyboard.D && this.bottleBar.bottleAmount > 0 && this.keyboard.THROW_START > this.keyboard.THROW_END) {
-            this.keyboard.THROW_END = new Date().getTime();
-            this.character.lastIdle = 0;
-            let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100); //+100 bc it starts infront infront of pepe
-            this.character.throwableObjects.push(bottle);
-            this.bottleBar.bottleAmount -= 1;
-            this.bottleBar.setPercentage(this.bottleBar.bottleAmount);
-        }
+    bottleOnEndboss(object) {
+        this.level.endboss.forEach((endboss) => {
+            if (object.isColliding(endboss) && !object.isBroken) {
+                endboss.hit();
+                object.break();
+            }
+        });
     }
-    
-    checkBrokenObjects(object) {
-        if (object.isBroken == true) {
+
+    checkDeadEnemy(enemy) {
+        if (enemy.isDead()) {
             setTimeout(() => {
-                let i = this.character.throwableObjects.indexOf(object); //to determine which bottle
-                this.character.throwableObjects.splice(i, 1);
-            }, 125 * 6); //6 splash Animation pics
-        }   
+                let i = this.level.enemies.indexOf(enemy); //to seperate
+                this.level.enemies.splice(i, 1);
+            }, 2000);
+        }
     }
 
     draw() {
@@ -141,6 +156,7 @@ class World {
         this.ctx.translate(this.camera_x, 0);
 
         this.addObjectsToMap(this.level.enemies);
+        this.addObjectsToMap(this.level.endboss);
         this.addObjectsToMap(this.level.coins);
         this.addObjectsToMap(this.level.bottles);
         this.addObjectsToMap(this.character.throwableObjects);
@@ -152,6 +168,7 @@ class World {
         this.addToMap(this.energyBar);
         this.addToMap(this.coinBar);
         this.addToMap(this.bottleBar);
+        /* this.addToMap(this.endbossEnergyBar); */
         // --------- Space for fixed Objects End ---------world.
 
         /* draw() fires as often as graphic card is able to = FPS */

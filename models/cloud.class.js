@@ -1,12 +1,14 @@
-class Cloud extends MovableObject {
+class Cloud extends CollidableObject {
     y = 0;
     height = 350;
     width = 800;
     world;
 
+    IMAGES = ASSETS['IMAGES']['cloud'];
+
     constructor(x) {
         super(); //enables access to extended class
-        this.loadImage('img/5.Fondo/Capas/4.nubes/Completo.png');
+        this.loadImage(this.IMAGES);
         this.xInit = x;
         this.x = x;
         this.animate();

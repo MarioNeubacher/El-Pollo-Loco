@@ -1,15 +1,10 @@
-class Coin extends MovableObject {
-
-    offsetRight = 20;
-    offsetLeft = 20;
-    offsetTop = 20;
-    offsetBottom = 20;
+class Coin extends CollidableObject {
 
     IMAGES = ASSETS['IMAGES']['coins'];
 
     constructor(){
         super(); //enables access to extended class
-        this.loadImage('img/8.Coin/Moneda1.png');
+        this.loadImage(this.IMAGES[0]);
         this.loadImages(this.IMAGES);
         this.y = 100;
         this.x = 200 + Math.random() * 2000;

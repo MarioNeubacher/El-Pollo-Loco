@@ -7,16 +7,16 @@ class EnergyBar extends DrawableObject {
     constructor() {
         super(); //enables access to extended class
         this.loadImages(this.IMAGES);
-        this.x = 20;
+        this.x = 10;
         this.y = 0;
         this.width = 200;
-        this.height = 60;
+        this.height = 50;
         this.setPercentage(100);
     }
 
     /**
      * 
-     * @param {string} percentage - changeStatusbar() world.class.js 
+     * @param {string} percentage - world.class.js 
      */
     setPercentage(percentage) {
         this.percentage = percentage; //set it as global variable
