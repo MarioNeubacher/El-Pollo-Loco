@@ -17,6 +17,13 @@ class Character extends CollidableObject {
     AUDIOS = ASSETS['AUDIOS'];
     IMAGES = ASSETS['IMAGES'];
 
+    offset = {
+        top: 100,
+        left: 0,
+        right: 0,
+        bottom: 0
+    };
+
     constructor() {
         super(); //enables access to extended class
         this.loadImage(this.IMAGES['walking'][0]);
@@ -33,6 +40,7 @@ class Character extends CollidableObject {
     }
 
     animate() {
+        //Keboard
         setInterval(() => {
             this.AUDIOS['move_sound'].pause();
             if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
@@ -51,9 +59,14 @@ class Character extends CollidableObject {
                 this.jump();
             }
 
+            if (this.throwBottle()) {
+                this.playThrow();
+            }
+
             this.world.camera_x = -this.x + 100; //camera gets linked to character
         }, 1000 / 60); //60 FPS 
 
+        //Animations
         setInterval(() => {
             if (this.isDead()) {
                 this.playDead();
@@ -68,8 +81,6 @@ class Character extends CollidableObject {
                 }
             } else if (this.movesBothSides()) {
                 this.playAnimation(this.IMAGES['walking']);
-            } else if (this.throwBottle()) {
-                this.playThrow();
             } else {
                 this.playIdle();
             }
@@ -101,11 +112,11 @@ class Character extends CollidableObject {
         this.playAnimation(this.IMAGES['dead']);
         this.jump();
         this.groundPos = 1000;
-        if (!this.hasPlayed) {
-            /* this.AUDIOS['dead_sound'].play(); */
-            this.hasPlayed = true;
-        }
         this.speed = 0;
+        /* if (!this.hasPlayed) {
+            this.AUDIOS['dead_sound'].play();
+            this.hasPlayed = true;
+        } */
     }
 
     playIdle() {

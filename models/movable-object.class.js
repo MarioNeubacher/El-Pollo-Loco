@@ -34,14 +34,6 @@ class MovableObject extends DrawableObject {
         return this.y < this.groundPos;
     }
 
-    isLittleAboveGroundForSplashIntervallDelay() {
-        return this.speedY < -37.5;
-    }
-
-    isLittleAboveGroundForGlassSoundDelay() {
-        return this.speedY < -10;
-    }
-
     hit() {
         this.lastIdle = 0;
         this.energy -= 5;

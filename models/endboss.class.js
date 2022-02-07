@@ -3,7 +3,7 @@ class Endboss extends CollidableObject {
     height = 400;
     width = 250;
     y = 60;
-    energy = 25;
+    energy = 6;
     
     IMAGES = ASSETS['IMAGES'];
 
@@ -26,6 +26,8 @@ class Endboss extends CollidableObject {
         setInterval(() => {
             if (this.isHurt()) {
                 this.playAnimation(this.IMAGES['endboss_hurt']);
+            } else if (this.isDead()) {
+                this.playAnimation(this.IMAGES['endboss_dead']);
             } else {
                 this.playAnimation(this.IMAGES['endboss']);
             }

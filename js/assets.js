@@ -104,12 +104,12 @@ const ASSETS = {
             'img/6.botella/Rotación/Mesa de trabajo 1 copia 6.png'
         ],
         bottle_splash: [
-            'img/6.botella/Rotación/Splash de salsa/Mesa de trabajo 1 copia 10.png',
-            'img/6.botella/Rotación/Splash de salsa/Mesa de trabajo 1 copia 11.png',
-            'img/6.botella/Rotación/Splash de salsa/Mesa de trabajo 1 copia 12.png',
             'img/6.botella/Rotación/Splash de salsa/Mesa de trabajo 1 copia 7.png',
             'img/6.botella/Rotación/Splash de salsa/Mesa de trabajo 1 copia 8.png',
-            'img/6.botella/Rotación/Splash de salsa/Mesa de trabajo 1 copia 9.png'
+            'img/6.botella/Rotación/Splash de salsa/Mesa de trabajo 1 copia 9.png',
+            'img/6.botella/Rotación/Splash de salsa/Mesa de trabajo 1 copia 10.png',
+            'img/6.botella/Rotación/Splash de salsa/Mesa de trabajo 1 copia 11.png',
+            'img/6.botella/Rotación/Splash de salsa/Mesa de trabajo 1 copia 12.png'
         ],
         energy_bar: [
             'img/7.Marcadores/Barra/Marcador vida/Naranja/0_ .png',
@@ -136,9 +136,12 @@ const ASSETS = {
             'img/7.Marcadores/Barra/Marcador_botella/Verde/100_.png'
         ],
         endboss_energy_bar: [
-            'img/7.Marcadores/Muestra_barra_Naranja.png',
-            'img/7.Marcadores/Muestra_barra_Azul.png',
-            'img/7.Marcadores/Muestra_barra_Verde.png'
+            'img/7.Marcadores/Marcadorvida_enemy/Naranja.png',
+            'img/7.Marcadores/Marcadorvida_enemy/Azul.png',
+            'img/7.Marcadores/Marcadorvida_enemy/Vede.png'
+        ],
+        endboss_icon: [
+            'img/7.Marcadores/Icono/Mesa de trabajo 130.png'
         ],
         endboss: [
             'img/4.Secuencias_Enemy_gigantón-Doña_Gallinota-/2.Ateción-ataque/1.Alerta/G5.png',
@@ -154,6 +157,11 @@ const ASSETS = {
             'img/4.Secuencias_Enemy_gigantón-Doña_Gallinota-/3.Herida/G21.png',
             'img/4.Secuencias_Enemy_gigantón-Doña_Gallinota-/3.Herida/G22.png',
             'img/4.Secuencias_Enemy_gigantón-Doña_Gallinota-/3.Herida/G23.png'
+        ],
+        endboss_dead: [
+            'img/4.Secuencias_Enemy_gigantón-Doña_Gallinota-/4.Muerte/G24.png',
+            'img/4.Secuencias_Enemy_gigantón-Doña_Gallinota-/4.Muerte/G25.png',
+            'img/4.Secuencias_Enemy_gigantón-Doña_Gallinota-/4.Muerte/G26.png'
         ]
     }
 }

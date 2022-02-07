@@ -53,6 +53,7 @@ p {
     box-shadow: inset -5px -5px 5px rgb(0 0 0 / 15%), inset 5px 5px 5px rgb(255 255 255 / 50%);
     animation: startGame-btn 1.7s ease infinite;
     outline: none;
+    cursor: pointer;
 }
 
 .btn-startGame:hover {

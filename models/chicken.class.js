@@ -9,6 +9,13 @@ class Chicken extends CollidableObject {
     AUDIOS = ASSETS['AUDIOS'];
     IMAGES = ASSETS['IMAGES'];
 
+    offset = {
+        top: 10,
+        left: 0,
+        right: 0,
+        bottom: 0
+    };
+
     constructor() {
         super(); //enables access to extended class
         this.loadImage(this.IMAGES['chicken_walking'][0]);

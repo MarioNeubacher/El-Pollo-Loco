@@ -6,7 +6,6 @@ class World {
     camera_x = 0;
     assets;
     isAlive = true;
-
     throwableObj;
 
     AUDIOS = ASSETS['AUDIOS'];
@@ -14,8 +13,8 @@ class World {
     energyBar = new EnergyBar();
     coinBar = new CoinBar();
     bottleBar = new BottleBar();
-    /*  endbossEnergyBar = new EndbossEnergyBar(); */
-
+    endbossEnergyBar = new EndbossEnergyBar();
+    endbossIcon = new EndbossIcon();
     character = new Character();
     coins = new Coin();
     bottle = new Bottle();
@@ -72,7 +71,7 @@ class World {
             setTimeout(() => {
                 let i = this.character.throwableObjects.indexOf(object); //to determine which bottle
                 this.character.throwableObjects.splice(i, 1);
-            }, 125 * 6); //6 splash Animation pics
+            }, 200 * 6); //6 splash Animation pics
         }
     }
 
@@ -100,21 +99,9 @@ class World {
 
     checkBottleCollision() {
         this.character.throwableObjects.forEach((object) => {
-            this.bottleOnGround(object);
             this.bottleOnChicken(object);
             this.bottleOnEndboss(object);
             this.checkBrokenObjects(object);
-        });
-    }
-
-    bottleOnGround(object) {
-        this.level.enemies.forEach((enemy) => {
-            if (!object.isColliding(enemy) && object.isLittleAboveGroundForSplashIntervallDelay() && !object.isBroken) {
-                object.break();
-            }
-            if (!object.isColliding(enemy) && object.isLittleAboveGroundForGlassSoundDelay() && !object.isBroken) {
-                object.glasssound();
-            }
         });
     }
 
@@ -133,6 +120,8 @@ class World {
             if (object.isColliding(endboss) && !object.isBroken) {
                 endboss.hit();
                 object.break();
+                this.endbossEnergyBar.energyAmount -= 1;
+                this.endbossEnergyBar.setPercentage(this.endbossEnergyBar.energyAmount);
             }
         });
     }
@@ -168,7 +157,10 @@ class World {
         this.addToMap(this.energyBar);
         this.addToMap(this.coinBar);
         this.addToMap(this.bottleBar);
-        /* this.addToMap(this.endbossEnergyBar); */
+        if (this.character.x > 1890) {
+            this.addToMap(this.endbossEnergyBar);
+            this.addToMap(this.endbossIcon);
+        }
         // --------- Space for fixed Objects End ---------world.
 
         /* draw() fires as often as graphic card is able to = FPS */
@@ -199,6 +191,7 @@ class World {
 
         mo.draw(this.ctx);
         mo.drawFrame(this.ctx);
+      /*   mo.drawInfo(this.ctx); */
 
         if (mo.otherDirection) {
             this.flipImageBack(mo);

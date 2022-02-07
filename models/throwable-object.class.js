@@ -4,6 +4,7 @@ class ThrowableObject extends CollidableObject {
     IMAGES = ASSETS['IMAGES'];
 
     throwableObject;
+    flying;
 
     groundPos = 362.5;
     hasPlayed = false;
@@ -26,7 +27,7 @@ class ThrowableObject extends CollidableObject {
     }
 
     //filters through all the arrays in the array 'IMAGES'
-    loadImages() { 
+    loadImages() {
         for (const status in this.IMAGES) {
             super.loadImages(this.IMAGES[status]);
         }
@@ -36,25 +37,26 @@ class ThrowableObject extends CollidableObject {
         /* this.AUDIOS['throw_sound'].play(); */
         this.speedY = 25;
         this.applyGravity();
-        setInterval(() => {
+        this.flying = setInterval(() => {
             if (this.isAboveGround()) {
                 this.x += 30;
                 this.playAnimation(this.IMAGES['bottle_throw']);
+            } else {
+                this.break();
             }
-        }, 100);
-    }
-
-    glasssound() {
-        /* if (!this.hasPlayed) {
-            this.AUDIOS['glass_sound'].play();
-            this.hasPlayed = true;
-        } */
+        }, 80);
     }
 
     break() {
+        clearInterval(this.flying);
+        this.groundPos = this.y;
+       /*  if (!this.hasPlayed) {
+            this.AUDIOS['glass_sound'].play();
+            this.hasPlayed = true;
+        } */
         setInterval(() => {
             this.playAnimation(this.IMAGES['bottle_splash']);
-        }, 125); 
+        }, 200);
         this.isBroken = true;
     }
 }
