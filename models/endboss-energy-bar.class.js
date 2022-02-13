@@ -1,6 +1,6 @@
 class EndbossEnergyBar extends DrawableObject {
 
-    energyAmount = 6;
+    energyAmount = 5;
 
     IMAGES = ASSETS['IMAGES']['energy_bar'];
 
@@ -11,7 +11,7 @@ class EndbossEnergyBar extends DrawableObject {
         this.y = 0;
         this.width = 200;
         this.height = 60;
-        this.setPercentage(6);
+        this.setPercentage(5);
     }
 
     /**
@@ -25,15 +25,15 @@ class EndbossEnergyBar extends DrawableObject {
     }
 
     resolveImagesIndex() {
-        if (this.percentage > 5) {
+        if (this.percentage == 5) {
             return 5;
-        } else if (this.percentage > 4) {
+        } else if (this.percentage == 4) {
             return 4;
-        } else if (this.percentage > 3) {
+        } else if (this.percentage == 3) {
             return 3;
-        } else if (this.percentage > 2) {
+        } else if (this.percentage == 2) {
             return 2;
-        } else if (this.percentage > 1) {
+        } else if (this.percentage == 1) {
             return 1;
         } else {
             return 0;

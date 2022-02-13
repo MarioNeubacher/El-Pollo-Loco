@@ -3,13 +3,20 @@ const ASSETS = {
         chicken_sound: new Audio('audio/chicken.mp3'),
         coin_sound: new Audio('audio/coin.mp3'),
         collectBottle_sound: new Audio('audio/collectBottle.mp3'),
+        bottleOnGround_sound: new Audio('audio/bottleOnGround.mp3'),
         dead_sound: new Audio('audio/dead.mp3'),
-        gameMusic: new Audio('audio/gameMusic.mp3'),
+        won_sound: new Audio('audio/won.mp3'),
         glass_sound: new Audio('audio/glass.mp3'),
         hurt_sound: new Audio('audio/hurt.mp3'),
         jump_sound: new Audio('audio/jump.mp3'),
         move_sound: new Audio('audio/running.mp3'),
+        stamp_sound: new Audio('audio/stamp.mp3'),
+        chickenLittle_sound: new Audio('audio/peep.mp3'),
+        endboss_sound: new Audio('audio/endboss.mp3'),
         throw_sound: new Audio('audio/throw.mp3')
+    },
+    MUSIC: {
+        gameMusic: new Audio('audio/gameMusic.mp3'),
     },
     IMAGES: {
         walking: [
@@ -89,12 +96,12 @@ const ASSETS = {
         chicken_dead: [
             'img/3.Secuencias_Enemy_básico/Versión_Gallinita (estas salen por orden de la gallina gigantona)/4.G_muerte.png'
         ],
-        little_chicken_walking: [
+        chicken_little_walking: [
             'img/3.Secuencias_Enemy_básico/Versión_pollito/1.Paso_derecho.png',
             'img/3.Secuencias_Enemy_básico/Versión_pollito/2.Centro.png',
             'img/3.Secuencias_Enemy_básico/Versión_pollito/3.Paso_izquierdo.png'
         ],
-        little_chicken_dead: [
+        chicken_little_dead: [
             'img/3.Secuencias_Enemy_básico/Versión_pollito/4.Muerte.png'
         ],
         bottle_throw: [
@@ -143,7 +150,7 @@ const ASSETS = {
         endboss_icon: [
             'img/7.Marcadores/Icono/Mesa de trabajo 130.png'
         ],
-        endboss: [
+        endboss_aggressive: [
             'img/4.Secuencias_Enemy_gigantón-Doña_Gallinota-/2.Ateción-ataque/1.Alerta/G5.png',
             'img/4.Secuencias_Enemy_gigantón-Doña_Gallinota-/2.Ateción-ataque/1.Alerta/G6.png',
             'img/4.Secuencias_Enemy_gigantón-Doña_Gallinota-/2.Ateción-ataque/1.Alerta/G7.png',
@@ -152,6 +159,16 @@ const ASSETS = {
             'img/4.Secuencias_Enemy_gigantón-Doña_Gallinota-/2.Ateción-ataque/1.Alerta/G10.png',
             'img/4.Secuencias_Enemy_gigantón-Doña_Gallinota-/2.Ateción-ataque/1.Alerta/G11.png',
             'img/4.Secuencias_Enemy_gigantón-Doña_Gallinota-/2.Ateción-ataque/1.Alerta/G12.png'
+        ],
+        endboss_attack: [
+            'img/4.Secuencias_Enemy_gigantón-Doña_Gallinota-/2.Ateción-ataque/2.Ataque/G13.png',
+            'img/4.Secuencias_Enemy_gigantón-Doña_Gallinota-/2.Ateción-ataque/2.Ataque/G14.png',
+            'img/4.Secuencias_Enemy_gigantón-Doña_Gallinota-/2.Ateción-ataque/2.Ataque/G15.png',
+            'img/4.Secuencias_Enemy_gigantón-Doña_Gallinota-/2.Ateción-ataque/2.Ataque/G16.png',
+            'img/4.Secuencias_Enemy_gigantón-Doña_Gallinota-/2.Ateción-ataque/2.Ataque/G17.png',
+            'img/4.Secuencias_Enemy_gigantón-Doña_Gallinota-/2.Ateción-ataque/2.Ataque/G18.png',
+            'img/4.Secuencias_Enemy_gigantón-Doña_Gallinota-/2.Ateción-ataque/2.Ataque/G19.png',
+            'img/4.Secuencias_Enemy_gigantón-Doña_Gallinota-/2.Ateción-ataque/2.Ataque/G20.png'
         ],
         endboss_hurt: [
             'img/4.Secuencias_Enemy_gigantón-Doña_Gallinota-/3.Herida/G21.png',
@@ -162,6 +179,10 @@ const ASSETS = {
             'img/4.Secuencias_Enemy_gigantón-Doña_Gallinota-/4.Muerte/G24.png',
             'img/4.Secuencias_Enemy_gigantón-Doña_Gallinota-/4.Muerte/G25.png',
             'img/4.Secuencias_Enemy_gigantón-Doña_Gallinota-/4.Muerte/G26.png'
+        ],
+        game_over: [
+            'img/9.Intro _ Outro Image/_Game over_ screen/3.Game over.png',
+            'img/9.Intro _ Outro Image/_Game over_ screen/1.you lost.png'
         ]
     }
 }

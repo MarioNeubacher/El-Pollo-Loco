@@ -6,8 +6,11 @@ class Character extends CollidableObject {
     speed = 10;
     world; //world.class.js
     hasPlayed = false;
-    energy = 100;
-    groundPos = 120;
+    groundPos = 110;
+    energy = 25;
+    movement;
+    animation;
+    jumping;
 
     idleTime = 5001;
     lastIdle = new Date().getTime();
@@ -18,7 +21,7 @@ class Character extends CollidableObject {
     IMAGES = ASSETS['IMAGES'];
 
     offset = {
-        top: 100,
+        top: 200,
         left: 0,
         right: 0,
         bottom: 0
@@ -40,43 +43,50 @@ class Character extends CollidableObject {
     }
 
     animate() {
-        //Keboard
-        setInterval(() => {
+        this.movement = setInterval(() => {
             this.AUDIOS['move_sound'].pause();
-            if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
-                this.moveRight();
-                this.otherDirection = false;
-                /* this.AUDIOS['move_sound'].play(); */
-            }
-
-            if (this.world.keyboard.LEFT && this.x > 0) {
-                this.moveLeft();
-                this.otherDirection = true;
-                /* this.AUDIOS['move_sound'].play(); */
-            }
-
-            if (this.world.keyboard.SPACE && !this.isAboveGround()) {
+            if (!this.isDead()) {
+                if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
+                    this.moveRight();
+                    this.otherDirection = false;
+                    this.AUDIOS['move_sound'].play();
+                } 
+                if (this.world.keyboard.LEFT && this.x > 0) {
+                    this.moveLeft();
+                    this.otherDirection = true;
+                    this.AUDIOS['move_sound'].play();
+                } 
+                if (this.world.keyboard.SPACE && !this.isAboveGround()) {
+                    this.jump();
+                    this.AUDIOS['jump_sound'].play();
+                } 
+                if (this.throwBottle()) {
+                    this.playThrow();
+                }
+            } else {
+                this.groundPos = 1000;
                 this.jump();
+                clearInterval(this.world.enemyStampCollision); //character doesnt stamp on chicken after isDead()
+                clearInterval(this.movement); //no movement after death
+                if (!this.hasPlayed) {
+                    this.AUDIOS['dead_sound'].play();
+                    this.hasPlayed = true;
+                }
             }
-
-            if (this.throwBottle()) {
-                this.playThrow();
-            }
-
             this.world.camera_x = -this.x + 100; //camera gets linked to character
-        }, 1000 / 60); //60 FPS 
+        }, 1000 / 60); // 60 FPS
 
-        //Animations
-        setInterval(() => {
+        this.animation = setInterval(() => {
             if (this.isDead()) {
                 this.playDead();
+                this.youLost();
             } else if (this.isHurt()) {
                 this.playAnimation(this.IMAGES['hit']);
-                /* this.AUDIOS['hurt_sound'].play(); */
+                this.AUDIOS['hurt_sound'].play();
             } else if (this.isAboveGround() && !this.isDead()) {
-                this.playAnimation(this.IMAGES['jumping']);
+               this.playAnimation(this.IMAGES['jumping']);
                 if (!this.hasPlayed) {
-                    /* this.AUDIOS['jump_sound'].play(); */
+                    this.AUDIOS['jump_sound'].play();
                     this.hasPlayed = true;
                 }
             } else if (this.movesBothSides()) {
@@ -84,7 +94,21 @@ class Character extends CollidableObject {
             } else {
                 this.playIdle();
             }
-        }, 100); 
+        }, 100);
+    }
+
+    playDead() {
+        this.playAnimation(this.IMAGES['dead']);
+        setTimeout(() => {
+            clearInterval(this.animation);
+        }, 100 * 10); //animation intervall x images amount
+    }
+
+    youLost() {
+        document.getElementById('id-gameLost').classList.remove('d-none');
+        setTimeout(() => {
+            location.reload();
+        }, 5000);
     }
 
     movesBothSides() {
@@ -97,26 +121,15 @@ class Character extends CollidableObject {
 
     playThrow() {
         this.world.keyboard.THROW_END = new Date().getTime();
-        this.lastIdle = 0;
+        this.lastIdle = 0; 
         let object = new ThrowableObject(this.x + 100, this.y + 100); //+100 bc it starts infront infront of pepe
-        this.throwableObjects.push(object);
+        this.throwableObjects.push(object); //push to remove it with splice afterwards
         this.world.bottleBar.bottleAmount -= 1;
         this.world.bottleBar.setPercentage(this.world.bottleBar.bottleAmount);
     }
 
     isStamping(collection) { //world.js
         return super.getBottomPos() - collection.getTopPos() <= 20;
-    }
-
-    playDead() {
-        this.playAnimation(this.IMAGES['dead']);
-        this.jump();
-        this.groundPos = 1000;
-        this.speed = 0;
-        /* if (!this.hasPlayed) {
-            this.AUDIOS['dead_sound'].play();
-            this.hasPlayed = true;
-        } */
     }
 
     playIdle() {

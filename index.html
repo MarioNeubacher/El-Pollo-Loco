@@ -23,6 +23,7 @@
     <script src="models/bottle-bar.class.js"></script> 
     <script src="models/endboss-energy-bar.class.js"></script> 
     <script src="models/chicken.class.js"></script>
+    <script src="models/chicken-little.class.js"></script>
     <script src="models/endboss.class.js"></script> 
     <script src="models/coins.class.js"></script>
     <script src="models/bottle.class.js"></script>
@@ -41,7 +42,8 @@
 <body class="background stop-scrolling">
     <div id="id-startScreen">
         <button onclick="init()" class="btn-startGame">Start game!</button>
-        <img style="height: 100vh; width: 100vw; object-fit: cover;" src="img/9.Intro _ Outro Image/Start Screen/Opción 1.png">    
+        <img class="img-startScreen" src="img/9.Intro _ Outro Image/Start Screen/Opción 1.png"> 
+        <a class="div-imagesOrigin" href="imagesOrigin.html">Images origin</a>   
     </div>
    
     <div id="id-game" class="div-description d-none">
@@ -54,10 +56,14 @@
                 <p>RIGHT:</p> <button class="div-key">►</button>
                 <p>JUMP:</p> <button class="div-key div-keySpace"></button>
                 <p>BOTTLE:</p> <button class="div-key">D</button>
-                <a style="color:white; padding-left: 15px; width: 120px" href="imagesOrigin.html">Images origin</a>
             </div>
             <img onclick="fullscreen()" class="img-fullscreen" src="img/fullscreen.png"> 
         </div>
     </div>
+
+    <img id="id-gameOver" class="img-gameOver d-none" src="img/9.Intro _ Outro Image/_Game over_ screen/3.Game over.png">
+
+    <img id="id-gameLost" class="img-gameLost d-none" src="img/9.Intro _ Outro Image/_Game over_ screen/1.you lost.png">
+    
 </body>
 </html>

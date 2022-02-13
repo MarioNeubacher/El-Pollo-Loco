@@ -1,7 +1,6 @@
-class Chicken extends CollidableObject {
-    y = 360;
-    height = 60;
-    width = 80;
+class ChickenLittle extends CollidableObject {
+    height = 45;
+    width = 60;
     energy = 5;
     hasPlayed = false;
     groundPos = 120;
@@ -9,19 +8,13 @@ class Chicken extends CollidableObject {
     AUDIOS = ASSETS['AUDIOS'];
     IMAGES = ASSETS['IMAGES'];
 
-    offset = {
-        top: 10,
-        left: 0,
-        right: 0,
-        bottom: 0
-    };
-
-    constructor() {
+    constructor(x, y) {
         super(); //enables access to extended class
-        this.loadImage(this.IMAGES['chicken_walking'][0]);
+        this.loadImage(this.IMAGES['chicken_little_walking'][0]);
         this.loadImages();
-        this.x = 200 + Math.random() * 2250; //math.random generates random number between 0 and 1 = range is 200 to 700
-        this.speed = 0.80 + Math.random() * 0.5;
+        this.x = x;
+        this.y = y;
+        this.speed = 5 + Math.random() * 0.9;
         this.animate();
         this.applyGravity();
     }
@@ -36,16 +29,16 @@ class Chicken extends CollidableObject {
     animate() {
         setInterval(() => {
             this.moveLeft();
-        }, 100);
+        }, 50);
 
         setInterval(() => {
             if (this.energy > 0) {
-                this.playAnimation(this.IMAGES['chicken_walking']);
+                this.playAnimation(this.IMAGES['chicken_little_walking']);
             } else {
-                this.playAnimation(this.IMAGES['chicken_dead']);
+                this.playAnimation(this.IMAGES['chicken_little_dead']);
                 this.speed = 0;
                 if (!this.hasPlayed) {
-                    this.AUDIOS['chicken_sound'].play();
+                    this.AUDIOS['chickenLittle_sound'].play();
                     this.hasPlayed = true;
                 }
             }

@@ -27,7 +27,7 @@ class MovableObject extends DrawableObject {
                 this.y -= this.speedY;
                 this.speedY -= this.acceleration; //- to fall down
             }
-        }, 1000 / 25);
+        }, 40);
     }
 
     isAboveGround() {
@@ -36,6 +36,7 @@ class MovableObject extends DrawableObject {
 
     hit() {
         this.lastIdle = 0;
+        this.currentImage = 0; //for endboss_dead animation multiple hits 
         this.energy -= 5;
         if (this.energy > 0) {
             this.lastHit = new Date().getTime(); //ms from 1970
@@ -51,7 +52,7 @@ class MovableObject extends DrawableObject {
     isHurt() {
         let timepassed = new Date().getTime() - this.lastHit; //Difference in ms
         timepassed = timepassed / 1000; //difference in s
-        return timepassed < 0.5;
+        return timepassed < 1.5;
     }
 
     /**

@@ -12,38 +12,62 @@ function init() {
 }
 
 function setSound() {
-    let element = document.getElementById("id-audioImg")
-    
+    let element = document.getElementById('id-audioImg');
+
     if (soundMuted) {
-        soundMuted = false;
+        world.AUDIOS['stamp_sound'].volume = 1;
+        world.AUDIOS['coin_sound'].volume = 1;
+        world.AUDIOS['collectBottle_sound'].volume = 1;
+        world.endboss.AUDIOS['won_sound'].volume = 
+        world.endboss.AUDIOS['endboss_sound'].volume = 1;
+        for (let i = 0; i < world.throwableObject.length; i++) {
+            abbrev = world.throwableObject[i].AUDIOS;
+                abbrev['throw_sound'].volume = 1;
+                abbrev['bottleOnGround_sound'].volume = 1;
+                abbrev['glass_sound'].volume = 1;
+        }
+        world.chicken.AUDIOS['chicken_sound'].volume = 1;
+        world.chickenLittle.AUDIOS['chickenLittle_sound'].volume = 1;
+        world.character.AUDIOS['move_sound'].volume = 1;
+        world.character.AUDIOS['jump_sound'].object
+        world.character.AUDIOS['dead_sound'].volume = 1;
+        world.character.AUDIOS['hurt_sound'].volume = 1;
         element.src = "img/sound.png";
-        world.character.walking_sound.volume=1;
-        world.character.dead_sound.volume=1;
-        world.character.hurt_sound.volume=1;
-        world.character.jump_sound.volume=1;
-        world.character.throw_sound.volume=1;
+        world.soundMuted = false;
     } else {
-        soundMuted = true;
+        world.AUDIOS['stamp_sound'].volume = 0;
+        world.AUDIOS['coin_sound'].volume = 0;
+        world.AUDIOS['collectBottle_sound'].volume = 0;
+        world.endboss.AUDIOS['won_sound'].volume = 0;
+        world.endboss.AUDIOS['endboss_sound'].volume = 0;
+        for (let i = 0; i < world.throwableObject.length; i++) {
+            abbrev = world.throwableObject[i].AUDIOS;
+                abbrev['throw_sound'].volume = 0;
+                abbrev['bottleOnGround_sound'].volume = 0;
+                abbrev['glass_sound'].volume = 0;
+        }
+        world.chicken.AUDIOS['chicken_sound'].volume = 0;
+        world.chickenLittle.AUDIOS['chickenLittle_sound'].volume = 0;
+        world.character.AUDIOS['move_sound'].volume = 0;
+        world.character.AUDIOS['jump_sound'].volume = 0;
+        world.character.AUDIOS['dead_sound'].volume = 0;
+        world.character.AUDIOS['hurt_sound'].volume = 0;
         element.src = "img/nosound.png"
-        world.character.walking_sound.volume=0;
-        world.character.dead_sound.volume=0;
-        world.character.hurt_sound.volume=0;
-        world.character.jump_sound.volume=0;
-        world.character.throw_sound.volume=0;
+        soundMuted = true;
     }
 }
 
 function setMusic() {
     let element = document.getElementById("id-musicImg")
-    
+
     if (musicMuted) {
-        musicMuted = false;
+        world.gameMusic.volume = 1;
         element.src = "img/music.png";
-        world.gameMusic.volume=1;
+        musicMuted = false;
     } else {
+        world.gameMusic.volume = 0;
+        element.src = "img/mute-music.png";
         musicMuted = true;
-        element.src = "img/mute-music.png"
-        world.gameMusic.volume=0;
     }
 }
 
@@ -52,7 +76,6 @@ function fullscreen() {
 }
 
 window.addEventListener("keydown", (e) => { //arrow keys only triggered by onkeydown, not onkeypress
-    console.log(e.keyCode);
     if (e.keyCode == 39) {
         keyboard.RIGHT = true;
     }
@@ -82,7 +105,6 @@ window.addEventListener("keydown", (e) => { //arrow keys only triggered by onkey
 });
 
 window.addEventListener("keyup", (e) => { //arrow keys only triggered by onkeydown, not onkeypress
-    /* console.log(e.keyCode); */
     if (e.keyCode == 39) {
         keyboard.RIGHT = false;
     }

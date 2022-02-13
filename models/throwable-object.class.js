@@ -10,6 +10,8 @@ class ThrowableObject extends CollidableObject {
     hasPlayed = false;
     isBroken = false;
 
+    character;
+
     /**
      * 
      * @param {numbers} x - character.js
@@ -34,7 +36,7 @@ class ThrowableObject extends CollidableObject {
     }
 
     throw() {
-        /* this.AUDIOS['throw_sound'].play(); */
+        this.AUDIOS['throw_sound'].play();
         this.speedY = 25;
         this.applyGravity();
         this.flying = setInterval(() => {
@@ -42,21 +44,26 @@ class ThrowableObject extends CollidableObject {
                 this.x += 30;
                 this.playAnimation(this.IMAGES['bottle_throw']);
             } else {
-                this.break();
+                this.breakOnGround();
             }
         }, 80);
     }
 
-    break() {
+    breakOnGround() {
         clearInterval(this.flying);
+        this.AUDIOS['bottleOnGround_sound'].play();
+    }
+
+    break() {
         this.groundPos = this.y;
-       /*  if (!this.hasPlayed) {
-            this.AUDIOS['glass_sound'].play();
-            this.hasPlayed = true;
-        } */
         setInterval(() => {
             this.playAnimation(this.IMAGES['bottle_splash']);
         }, 200);
         this.isBroken = true;
+        clearInterval(this.flying);
+        if (!this.hasPlayed) {
+            this.AUDIOS['glass_sound'].play();
+            this.hasPlayed = true;
+        }
     }
 }
