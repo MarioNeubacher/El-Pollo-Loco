@@ -3,14 +3,9 @@ class ThrowableObject extends CollidableObject {
     AUDIOS = ASSETS['AUDIOS'];
     IMAGES = ASSETS['IMAGES'];
 
-    throwableObject;
-    flying;
-
     groundPos = 362.5;
     hasPlayed = false;
     isBroken = false;
-
-    character;
 
     /**
      * 
@@ -26,6 +21,12 @@ class ThrowableObject extends CollidableObject {
         this.height = 60;
         this.width = 50;
         this.throw();
+
+        if (soundMuted) {
+            this.AUDIOS['throw_sound'].volume = 0;
+            this.AUDIOS['bottleOnGround_sound'].volume = 0;
+            this.AUDIOS['glass_sound'].volume = 0;
+        }
     }
 
     //filters through all the arrays in the array 'IMAGES'
@@ -54,7 +55,7 @@ class ThrowableObject extends CollidableObject {
         this.AUDIOS['bottleOnGround_sound'].play();
     }
 
-    break() {
+    break() { //world.js
         this.groundPos = this.y;
         setInterval(() => {
             this.playAnimation(this.IMAGES['bottle_splash']);

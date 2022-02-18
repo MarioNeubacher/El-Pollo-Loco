@@ -80,7 +80,7 @@ p {
     height: 525px;
     border-radius: 10px !important;
     color: white;
-    position: relative;
+    position: relative; /* for icons music&sound */
 }
 
 .img-fullscreen {
@@ -159,5 +159,90 @@ p {
 @keyframes img-gameOver {
     50% {
         transform: scale(1.1, 1.1);
+    }
+}
+
+@media (max-width: 750px) {
+    .div-description {
+        transform: rotate(90deg);
+        height: 450px;
+        width: 600px;
+    }
+
+    .div-canvas {
+        width: 600px;
+    }
+
+    .img-audio {
+        height: 25px;
+        width: 25px;
+    }
+
+    .img-music {
+        height: 25px;
+        width: 25px;
+    }
+
+    .img-gameOver {
+        transform: rotate(90deg);
+        animation: none;
+        width: 1000px;
+    }
+
+    .img-gameLost {
+        transform: rotate(90deg);
+        animation: none;
+        width: 1000px;
+    }
+}
+
+@media (max-width: 540px) {
+    .div-description {
+        height: 450px;
+    }
+
+    .div-canvas {
+        height: 400px;
+    }
+}
+
+@media (max-width: 460px) {
+    .div-description {
+        height: 350px;
+    }
+
+    .div-canvas {
+        height: 300px;
+        width: 600px;
+    }
+
+    .img-audio {
+        height: 20px;
+        width: 20px;
+    }
+
+    .img-music {
+        height: 20px;
+        width: 20px;
+    }
+}
+
+@media (max-width: 360px) {
+    .div-description {
+        height: 250px;
+    }
+
+    .div-canvas {
+        height: 200px;
+    }
+
+    .img-audio {
+        height: 15px;
+        width: 15px;
+    }
+
+    .img-music {
+        height: 15px;
+        width: 15px;
     }
 }

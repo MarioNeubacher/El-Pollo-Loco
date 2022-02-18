@@ -17,12 +17,7 @@ class World {
     endbossEnergyBar = new EndbossEnergyBar();
     endbossIcon = new EndbossIcon();
     character = new Character();
-    coins = new Coin();
-    bottle = new Bottle();
-    chicken = new Chicken();
-    endboss = level1.endboss[0];
-    throwableObject = this.character.throwableObjects;
-    chickenLittle = new ChickenLittle();
+    endboss = new Endboss(2500, 60);
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -32,7 +27,7 @@ class World {
         this.setWorld();
         this.run();
         this.gameMusic.play();
-        this.gameMusic.addEventListener('ended', function() {
+        this.gameMusic.addEventListener('ended', function () { //no loop
             this.currentTime = 0;
             this.play();
         }, false);
@@ -48,14 +43,19 @@ class World {
     run() {
         setInterval(() => {
             this.checkCollisions();
-            this.checkBottleCollision();
         }, 20);
+        setInterval(() => {
+            this.checkBottleCollision();
+        }, 100); //higher otherwise endboss dies with just 1-2 hits
         this.enemyStampCollision = setInterval(() => {
             this.checkEnemyStampCollision();
         }, 20);
         this.enemyCollision = setInterval(() => {
             this.checkEnemyCollision();
-        }, 1000);
+            if (this.endboss.isDead()) {
+                clearInterval(this.enemyCollision); //no enemy can hit pepe after endboss is dead  
+            }
+        }, 1000); //higher otherwise pepe dies too quick
     }
 
     checkCollisions() {
@@ -102,13 +102,11 @@ class World {
             }
         });
 
-        this.level.endboss.forEach((endboss) => {
-            if (this.character.isColliding(endboss) && !endboss.isDead()) { //!enemy.isDead = one chicken can die 
-                this.character.hit();
-                this.energyBar.energyAmount -= 5;
-                this.energyBar.setPercentage(this.energyBar.energyAmount);
-            }
-        });
+        if (this.character.isColliding(this.endboss) && !this.endboss.isDead()) { //!enemy.isDead = one chicken can die 
+            this.character.hit();
+            this.energyBar.energyAmount -= 5;
+            this.energyBar.setPercentage(this.energyBar.energyAmount);
+        }
     }
 
     collideCoin() {
@@ -117,7 +115,7 @@ class World {
                 this.coinBar.coinAmount += 21;
                 this.coinBar.setPercentage(this.coinBar.coinAmount);
                 this.level.coins.splice(index, 1);
-                 this.AUDIOS['coin_sound'].play();
+                this.AUDIOS['coin_sound'].play();
             }
         });
     }
@@ -183,15 +181,13 @@ class World {
     }
 
     bottleOnEndboss(object) {
-        this.level.endboss.forEach((endboss) => {
-            if (object.isColliding(endboss) && !object.isBroken && object.isAboveGround()) {
-                endboss.hit();
-                this.endbossEnergyBar.energyAmount -= 1;
-                this.endbossEnergyBar.setPercentage(this.endbossEnergyBar.energyAmount);
-                object.break();
-                object.isBroken = true;
-            }
-        });
+        if (object.isColliding(this.endboss) && !object.isBroken && object.isAboveGround()) {
+            this.endboss.hit();
+            this.endbossEnergyBar.energyAmount -= 1;
+            this.endbossEnergyBar.setPercentage(this.endbossEnergyBar.energyAmount);
+            object.break();
+            object.isBroken = true;
+        }
     }
 
     checkBrokenObjects(object) {
@@ -199,7 +195,7 @@ class World {
             setTimeout(() => {
                 let i = this.character.throwableObjects.indexOf(object); //to determine which bottle
                 this.character.throwableObjects.splice(i, 1);
-            }, 200 * 5); //break() 200ms intervall x 6 splash images 
+            }, 200 * 6); //break() 200ms intervall x 6 splash images 
             object.isBroken = false;
         }
     }
@@ -215,9 +211,10 @@ class World {
 
         this.addObjectsToMap(this.level.enemies);
         this.addObjectsToMap(this.endboss.chickensLittle);
-        this.addObjectsToMap(this.level.endboss);
         this.addObjectsToMap(this.level.coins);
         this.addObjectsToMap(this.level.bottles);
+        
+        this.addToMap(this.endboss);
         this.addObjectsToMap(this.character.throwableObjects);
         this.addToMap(this.character);
 

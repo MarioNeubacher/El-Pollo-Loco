@@ -25,8 +25,8 @@ class Endboss extends CollidableObject {
         this.spawnChicks();
         this.x = x;
         this.y = y;
-        this.applyGravity();
         this.animate();
+        this.applyGravity();
     }
 
     //filters through all the arrays in the array 'IMAGES'
@@ -49,22 +49,18 @@ class Endboss extends CollidableObject {
                 this.youWon();
             }
         }, 200);
-
-        this.animation = setInterval(() => {
-            if (this.isDead()) {
-                this.playAnimation(this.IMAGES['endboss_dead']);
-            }
-        }, 200);
     }
 
     playDead() {
+        clearInterval(this.movement); //only once speedY in jump()
         this.groundPos = 1000;
         this.jump();
-        clearInterval(this.enemyCollision); //no enemy can hit pepe after endboss is dead 
-        clearInterval(this.movement);
+        this.animation = setInterval(() => {
+            this.playAnimation(this.IMAGES['endboss_dead']);
+        }, 200);
         setTimeout(() => {
             clearInterval(this.animation);
-        }, 200 * 2);
+        }, 200 * 3);
     }
 
     youWon() {
@@ -78,12 +74,7 @@ class Endboss extends CollidableObject {
     playAttack() {
         this.playAnimation(this.IMAGES['endboss_hurt']);
         this.AUDIOS['endboss_sound'].play();
-        this.jump();
-        this.speedY = 10;
         this.x -= 50;
-        setTimeout(() => {
-            this.y = 60;
-        }, 1500);
     }
 
     playAggressive() {
@@ -94,8 +85,10 @@ class Endboss extends CollidableObject {
 
     spawnChicks() {
         setInterval(() => {
-            let object = new ChickenLittle(this.x, 375);
-            this.chickensLittle.push(object); //push to remove it with splice afterwards
+            if (!this.isDead()) {
+                let object = new ChickenLittle(this.x, 375);
+                this.chickensLittle.push(object); //push to remove it with splice afterwards
+            }
         }, 5000)
     }
 }

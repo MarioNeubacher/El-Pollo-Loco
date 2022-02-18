@@ -17,6 +17,11 @@ class ChickenLittle extends CollidableObject {
         this.speed = 5 + Math.random() * 0.9;
         this.animate();
         this.applyGravity();
+
+        
+        if (soundMuted) {
+            this.AUDIOS['chickenLittle_sound'].volume = 0;
+        }
     }
 
     //filters through all the arrays in the array 'IMAGES'
